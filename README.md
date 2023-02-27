@@ -1,13 +1,13 @@
-# Fage
+# 📝Fage
 
 Software Para agendamento rápido e fácil de serviços
 
 
-## Descrição
+## 📃Descrição📃
 
 Projeto onde será desenvolvida a ideia trabalhada no **Projeto Integrador I** 
 
-## Squad
+## 👨‍💻Squad💻
 
 ```Allan Fernando Oliveira de Andrade``` <a style="color:green">  **Desenvolvedor** </a>  
 ```Carlos Eduardo Mariano Garcia Pereira```  <a style="color:green">  **Desenvolvedor** </a>  
@@ -18,7 +18,7 @@ Projeto onde será desenvolvida a ideia trabalhada no **Projeto Integrador I**
 
 
 
-## Tecnologias que serão utilizadas
+## 🔎Tecnologias que serão utilizadas
 
 * Flutter 📱
 
