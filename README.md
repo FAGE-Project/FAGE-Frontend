@@ -1,16 +1,37 @@
-# fage
+# 📝Fage
 
-A new Flutter project.
+Software Para agendamento rápido e fácil de serviços
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## 📃Descrição📃
 
-A few resources to get you started if this is your first Flutter project:
+Projeto onde será desenvolvida a ideia trabalhada no **Projeto Integrador I** 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 👨‍💻Squad💻
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```Allan Fernando Oliveira de Andrade``` <a style="color:green">  **Desenvolvedor** </a>  
+```Carlos Eduardo Mariano Garcia Pereira```  <a style="color:green">  **Desenvolvedor** </a>  
+```Gabriel da Silva de Oliveira``` <a style="color:green">  **Desenvolvedor** </a>   
+```Helon Bentes Bastos Xavier``` <a style="color:green">  **Desenvolvedor** </a>  
+```Leonardo Sarto da Silva```  <a style="color:blue">  **Scrum Master** </a>    
+```Vicente Yoneyama Júnior``` <a style="color:purple">  **Product Owner** </a>
+
+
+
+## 🔎Tecnologias que serão utilizadas
+
+* Flutter 📱
+
+> Framework utilizado para o desenvolvimento da solução móvel
+
+* Dart 🌊
+
+> Linguagem utilizada em conjunto com o Framework Flutter
+
+* MariaDB 🐬
+
+> SGBD gratuíto onde serão armazenados os dados da solução
+
+* Java ☕
+
+> Linguagem utilizada no consumo e criação de API's
