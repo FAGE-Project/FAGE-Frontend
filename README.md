@@ -18,20 +18,26 @@ Projeto onde será desenvolvida a ideia trabalhada no **Projeto Integrador I**
 
 
 
-## 🔎Tecnologias que serão utilizadas
+## 🔎Tecnologias
 
-* Flutter 📱
+# BackEnd
 
-> Framework utilizado para o desenvolvimento da solução móvel
-
-* Dart 🌊
-
-> Linguagem utilizada em conjunto com o Framework Flutter
+<img  src="https://d1.awsstatic.com/logos/partners/MariaDB_Logo.d8a208f0a889a8f0f0551b8391a065ea79c54f3a.png" width="150px">
 
 * MariaDB 🐬
 
+> Surgiu como um fork(cópia) do MySQL.
 > SGBD gratuíto onde serão armazenados os dados da solução
+> Maior rapidez, escalabilidade e robustez.
 
-* Java ☕
+ 
 
-> Linguagem utilizada no consumo e criação de API's
+### <img src="https://static.mundoeducacao.uol.com.br/mundoeducacao/conteudo_legenda/47bb859e52444b02002dfe9e11de8c1e.jpg" width="50px"> <font size="30">+</font> <img src="https://4.bp.blogspot.com/-ou-a_Aa1t7A/W6IhNc3Q0gI/AAAAAAAAD6Y/pwh44arKiuM_NBqB1H7Pz4-7QhUxAgZkACLcBGAs/s400/spring-boot-logo.png" width="100px">
+
+* Java + Springboot ☕🍃
+
+> Java : Linguagem utilizada no consumo e criação de API's
+> Java : Simples e de fácil aprendizagem para iniciantes
+> Java : Multiplataformas, capacidade de rodar em vários sistemas diferentes
+
+> Springboot : Criação de aplicações autossuficientes e robustas
