@@ -17,7 +17,7 @@ Vicente Yoneyama Júnior Product Owner
 🔎Tecnologias
 FrontEnd
 
-![Flutter](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ80s3vzgCm43hijlwou_lhl91pATI5HSZv_jGqebY&s)
+<img src="https://storage.googleapis.com/cms-storage-bucket/0dbfcc7a59cd1cf16282.png" style="margin-left: 10px" alt="DartLogo" height="140" width="140">
 
 Flutter é um framework com foco em multiplataformas de dispositivos móveis, permitindo
 o desenvolvimento tanto para Android quanto IOS com apenas um código. Seus principais
@@ -27,7 +27,7 @@ benefícios são, versatilidade, agilidade e menor curva de aprendizado.
 
 
 
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTXhtnivFRgFGg_TePXF-HQFPCajXiKQzosA&usqp=CAU" alt="DartLogo" height="110" width="110">
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/c6/Dart_logo.png" style="margin-left: 10px" alt="DartLogo" height="140" width="140">
 
 
 
