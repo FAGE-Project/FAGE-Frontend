@@ -1,6 +1,6 @@
 {
-    "name": "fage",
-    "short_name": "fage",
+    "name": "fage_telas",
+    "short_name": "fage_telas",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
