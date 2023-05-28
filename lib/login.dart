@@ -83,6 +83,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
+            SizedBox(height: 20),
             TextButton(
               onPressed: () {
                 // TODO: Navigate to the forgot password screen
@@ -100,6 +101,7 @@ class _LoginState extends State<Login> {
               ),
               text: 'Entrar com Google',
             ),
+            SizedBox(height: 10),
             SignInButton(
               Buttons.Facebook,
               onPressed: () {
@@ -172,7 +174,7 @@ class _LoginState extends State<Login> {
             TextFormField(
               controller: _emailController,
               decoration: InputDecoration(
-                labelText: 'Corporate Email',
+                labelText: 'Email corporativo',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
@@ -183,7 +185,7 @@ class _LoginState extends State<Login> {
               controller: _passwordController,
               obscureText: true,
               decoration: InputDecoration(
-                labelText: 'Corporate Password',
+                labelText: 'Senha corporativa',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
@@ -204,17 +206,18 @@ class _LoginState extends State<Login> {
                 ),
               ),
               child: Text(
-                'Corporate Login',
+                'Login corporativo',
                 style: TextStyle(
                   fontSize: 16.0,
                 ),
               ),
             ),
+            SizedBox(height: 20),
             TextButton(
               onPressed: () {
                 // TODO: Navigate to the forgot password screen
               },
-              child: Text('Forgot Password'),
+              child: Text('esqueci minha senha'),
             ),
             SizedBox(height: 20),
             SignInButton(
@@ -225,8 +228,9 @@ class _LoginState extends State<Login> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              text: 'Corporate Login with Google',
+              text: 'Entrar com Google',
             ),
+            SizedBox(height: 10),
             SignInButton(
               Buttons.Facebook,
               onPressed: () {
@@ -235,7 +239,7 @@ class _LoginState extends State<Login> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              text: 'Corporate Login with Facebook',
+              text: 'Entrar com Facebook',
             ),
             SizedBox(height: 20),
             TextButton.icon(
@@ -260,7 +264,7 @@ class _LoginState extends State<Login> {
                 color: Colors.blue,
               ),
               label: Text(
-                'Corporate Register with Email',
+                'registrar com email corporativo',
                 style: TextStyle(
                   fontSize: 16.0,
                   color: Colors.blue,
