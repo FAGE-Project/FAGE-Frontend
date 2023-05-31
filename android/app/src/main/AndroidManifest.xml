@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="fage_telas"
+        android:label="telas_login"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
