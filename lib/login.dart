@@ -86,7 +86,7 @@ class _LoginState extends State<Login> {
                         ElevatedButton(
                           onPressed: () {
                             if(_formKey.currentState!.validate()){
-                              return null; //posteriormente adicionar caminho para tela inicial
+                              print('Login realizado com sucesso'); //posteriormente adicionar caminho para tela inicial
                               //implementar um navigator push, dentro deste if para a tela que será criada futuramente.
                             }
                             
@@ -206,7 +206,7 @@ class _LoginState extends State<Login> {
                         TextFormField(
                           controller: _emailController,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: validarSenha,
+                          validator: validarEmail,
                           decoration: InputDecoration(
                             labelText: 'Email',
                             border: OutlineInputBorder(
@@ -234,7 +234,7 @@ class _LoginState extends State<Login> {
                   ElevatedButton(
                     onPressed: () {
                       if(_formKey.currentState!.validate()){
-                        return null;
+                        print('Login Realizado com sucesso');
                         // futuramente implementar a rota para a tela seguinte.
                       }
                     },
@@ -377,44 +377,57 @@ class _LoginState extends State<Login> {
                           width: 100,
                         ),
                         SizedBox(height: 20),
-                        TextFormField(
-                          controller: _emailController,
-                          decoration: InputDecoration(
-                            labelText: 'Email corporativo',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
+                        Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              TextFormField(
+                                controller: _emailController,
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                validator: validarEmail,
+                                decoration: InputDecoration(
+                                  labelText: 'Email corporativo',
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 20),
+                              TextFormField(
+                                controller: _passwordController,
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                validator: validarSenha,
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                  labelText: 'Senha',
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                ),
+                              ),
+                            ],
                             ),
                           ),
-                        ),
-                        SizedBox(height: 20),
-                        TextFormField(
-                          controller: _passwordController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            labelText: 'Senha',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
+                          SizedBox(height: 20),
+                          ElevatedButton(
+                            onPressed: () {
+                              if(_formKey.currentState!.validate()){
+                                print('Login realizado com sucesso');
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                vertical: 12.0,
+                                horizontal: 20.0,
+                              ),
                             ),
-                          ),
-                        ),
-                        SizedBox(height: 20),
-                        ElevatedButton(
-                          onPressed: () {
-                            // TODO: Login the user
-                          },
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                              vertical: 12.0,
-                              horizontal: 20.0,
-                            ),
-                          ),
-                          child: Text(
-                            'Entrar',
-                            style: TextStyle(
-                              fontSize: 16.0,
+                            child: Text(
+                              'Entrar',
+                              style: TextStyle(
+                                fontSize: 16.0,
                             ),
                           ),
                         ),
@@ -510,30 +523,42 @@ class _LoginState extends State<Login> {
                     width: 100,
                   ),
                   SizedBox(height: 20),
-                  TextFormField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      labelText: 'Email corporativo',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  TextFormField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: 'Senha',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
+                  Form(
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: _emailController,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: validarEmail,
+                          decoration: InputDecoration(
+                            labelText: 'Email corporativo',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        TextFormField(
+                          controller: _passwordController,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: validarSenha,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            labelText: 'Senha',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      // TODO: Login the user
+                      if(_formKey.currentState!.validate()){
+                        print('Login realizado com sucesso'); //posteriormente implementar rota para a tela inicial do corporativo
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
