@@ -1,4 +1,4 @@
-package com.example.fage_telas
+package com.example.telas_login
 
 import io.flutter.embedding.android.FlutterActivity
 

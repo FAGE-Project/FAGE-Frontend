@@ -1,6 +1,6 @@
 {
-    "name": "fage_telas",
-    "short_name": "fage_telas",
+    "name": "telas_login",
+    "short_name": "telas_login",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
