@@ -1,3 +1,4 @@
+import 'package:fage_telas/InicialSimulado.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 
@@ -86,7 +87,9 @@ class _LoginState extends State<Login> {
                         ElevatedButton(
                           onPressed: () {
                             if(_formKey.currentState!.validate()){
-                              print('Login realizado com sucesso'); //posteriormente adicionar caminho para tela inicial
+                              Route rota = MaterialPageRoute(builder: (context) => InicialSimulado());
+                              Navigator.push(context, rota);
+                              //posteriormente adicionar caminho para tela inicial
                               //implementar um navigator push, dentro deste if para a tela que será criada futuramente.
                             }
                             
@@ -234,7 +237,8 @@ class _LoginState extends State<Login> {
                   ElevatedButton(
                     onPressed: () {
                       if(_formKey.currentState!.validate()){
-                        print('Login Realizado com sucesso');
+                        Route rota = MaterialPageRoute(builder: (context) => InicialSimulado());
+                        Navigator.push(context, rota);
                         // futuramente implementar a rota para a tela seguinte.
                       }
                     },
@@ -412,7 +416,8 @@ class _LoginState extends State<Login> {
                           ElevatedButton(
                             onPressed: () {
                               if(_formKey.currentState!.validate()){
-                                print('Login realizado com sucesso');
+                                Route rota = MaterialPageRoute(builder: (context) => InicialSimulado());
+                                Navigator.push(context, rota);
                               }
                             },
                             style: ElevatedButton.styleFrom(
@@ -557,7 +562,9 @@ class _LoginState extends State<Login> {
                   ElevatedButton(
                     onPressed: () {
                       if(_formKey.currentState!.validate()){
-                        print('Login realizado com sucesso'); //posteriormente implementar rota para a tela inicial do corporativo
+                        Route rota = MaterialPageRoute(builder: (context) => InicialSimulado());
+                        Navigator.push(context, rota);
+                        //posteriormente implementar rota para a tela inicial do corporativo
                       }
                     },
                     style: ElevatedButton.styleFrom(
