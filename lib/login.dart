@@ -68,6 +68,7 @@ class _LoginState extends State<Login> {
                               TextFormField(
                                 inputFormatters: [maskCPF],
                                 controller: _cpf_cnpjControllerUser,
+                                keyboardType: TextInputType.number,
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 validator: (value) {
@@ -228,6 +229,7 @@ class _LoginState extends State<Login> {
                           controller: _cpf_cnpjControllerUser,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           inputFormatters: [maskCPF],
+                          keyboardType: TextInputType.number,
                           validator: (value) {
                             if (CPFValidator.isValid(value)) {
                               return null;
@@ -390,6 +392,7 @@ class _LoginState extends State<Login> {
                               TextFormField(
                                 controller: _cpf_cnpjControllerCorp,
                                 inputFormatters: [maskCNPJ],
+                                keyboardType: TextInputType.number,
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 validator: (value) {
@@ -548,6 +551,7 @@ class _LoginState extends State<Login> {
                         TextFormField(
                           controller: _cpf_cnpjControllerCorp,
                           inputFormatters: [maskCNPJ],
+                          keyboardType: TextInputType.number,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
                             if (CPFValidator.isValid(value)) {
