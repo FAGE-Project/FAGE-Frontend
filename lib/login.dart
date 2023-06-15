@@ -1,6 +1,9 @@
 import 'package:fage_telas/InicialSimulado.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:brasil_fields/brasil_fields.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -12,8 +15,14 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final PageController _pageController = PageController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _cpf_cnpjControllerUser = TextEditingController();
+  final TextEditingController _passwordControllerUser = TextEditingController();
+  final TextEditingController _cpf_cnpjControllerCorp = TextEditingController();
+  final TextEditingController _passwordControllerCorp = TextEditingController();
+  var maskCPF = MaskTextInputFormatter(
+      mask: '###.###.###-##', filter: {"#": RegExp(r'[0-9]')});
+  var maskCNPJ = MaskTextInputFormatter(
+      mask: '##.###.###/####-##', filter: {"#": RegExp(r'[0-9]')});
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +66,19 @@ class _LoginState extends State<Login> {
                           child: Column(
                             children: [
                               TextFormField(
-                                controller: _emailController,
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                validator: validarEmail,
+                                inputFormatters: [maskCPF],
+                                controller: _cpf_cnpjControllerUser,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: (value) {
+                                  if (CPFValidator.isValid(value)) {
+                                    return null;
+                                  } else {
+                                    return 'CPF inválido';
+                                  }
+                                },
                                 decoration: InputDecoration(
-                                  labelText: 'Email',
+                                  labelText: 'CPF',
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0),
                                   ),
@@ -69,8 +86,9 @@ class _LoginState extends State<Login> {
                               ),
                               SizedBox(height: 20),
                               TextFormField(
-                                controller: _passwordController,
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                controller: _passwordControllerUser,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 validator: validarSenha,
                                 obscureText: true,
                                 decoration: InputDecoration(
@@ -86,13 +104,13 @@ class _LoginState extends State<Login> {
                         SizedBox(height: 20),
                         ElevatedButton(
                           onPressed: () {
-                            if(_formKey.currentState!.validate()){
-                              Route rota = MaterialPageRoute(builder: (context) => InicialSimulado());
+                            if (_formKey.currentState!.validate()) {
+                              Route rota = MaterialPageRoute(
+                                  builder: (context) => InicialSimulado());
                               Navigator.push(context, rota);
                               //posteriormente adicionar caminho para tela inicial
                               //implementar um navigator push, dentro deste if para a tela que será criada futuramente.
                             }
-                            
                           },
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
@@ -207,11 +225,18 @@ class _LoginState extends State<Login> {
                     child: Column(
                       children: [
                         TextFormField(
-                          controller: _emailController,
+                          controller: _cpf_cnpjControllerUser,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: validarEmail,
+                          inputFormatters: [maskCPF],
+                          validator: (value) {
+                            if (CPFValidator.isValid(value)) {
+                              return null;
+                            } else {
+                              return 'CPF inválido';
+                            }
+                          },
                           decoration: InputDecoration(
-                            labelText: 'Email',
+                            labelText: 'CPF',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             ),
@@ -219,7 +244,7 @@ class _LoginState extends State<Login> {
                         ),
                         SizedBox(height: 20),
                         TextFormField(
-                          controller: _passwordController,
+                          controller: _passwordControllerUser,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: validarSenha,
                           obscureText: true,
@@ -236,8 +261,9 @@ class _LoginState extends State<Login> {
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      if(_formKey.currentState!.validate()){
-                        Route rota = MaterialPageRoute(builder: (context) => InicialSimulado());
+                      if (_formKey.currentState!.validate()) {
+                        Route rota = MaterialPageRoute(
+                            builder: (context) => InicialSimulado());
                         Navigator.push(context, rota);
                         // futuramente implementar a rota para a tela seguinte.
                       }
@@ -336,30 +362,6 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-  bool emailValido = false;
-
-  String? validarEmail(String? value){
-    final emailRegex = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
-    if(value == null || value.isEmpty){
-      return 'Por favor, insira um email válido';
-    }else if(!RegExp(emailRegex).hasMatch(value)) {
-      return 'Por favor insira um email válido';
-    }
-    else{
-      return null; // retorna null se email for válido
-    }
-  }
-
-  String? validarSenha(String? value){
-    final senhaRegex = r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*&])[A-Za-z\d@$!%*?&]+$';
-    if(value == null || value.isEmpty){
-      return 'Por favor, insira uma senha';
-    }else if(value.length < 8){
-      return 'A senha deve ter no mínimo 8 caracteres';
-    }else{
-      return null; // retorna null se senha for válida
-    }
-  }
 
   Widget _buildCorporateLogin() {
     return Center(
@@ -386,11 +388,21 @@ class _LoginState extends State<Login> {
                           child: Column(
                             children: [
                               TextFormField(
-                                controller: _emailController,
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                validator: validarEmail,
+                                controller: _cpf_cnpjControllerCorp,
+                                inputFormatters: [maskCNPJ],
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: (value) {
+                                  if (CPFValidator.isValid(value)) {
+                                    return null;
+                                  } else if (CNPJValidator.isValid(value)) {
+                                    return null;
+                                  } else {
+                                    return 'CPF ou CNPJ inválido';
+                                  }
+                                },
                                 decoration: InputDecoration(
-                                  labelText: 'Email corporativo',
+                                  labelText: 'CPF/CNPJ',
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0),
                                   ),
@@ -398,8 +410,9 @@ class _LoginState extends State<Login> {
                               ),
                               SizedBox(height: 20),
                               TextFormField(
-                                controller: _passwordController,
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                controller: _passwordControllerCorp,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 validator: validarSenha,
                                 obscureText: true,
                                 decoration: InputDecoration(
@@ -410,29 +423,30 @@ class _LoginState extends State<Login> {
                                 ),
                               ),
                             ],
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              Route rota = MaterialPageRoute(
+                                  builder: (context) => InicialSimulado());
+                              Navigator.push(context, rota);
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                              vertical: 12.0,
+                              horizontal: 20.0,
                             ),
                           ),
-                          SizedBox(height: 20),
-                          ElevatedButton(
-                            onPressed: () {
-                              if(_formKey.currentState!.validate()){
-                                Route rota = MaterialPageRoute(builder: (context) => InicialSimulado());
-                                Navigator.push(context, rota);
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                vertical: 12.0,
-                                horizontal: 20.0,
-                              ),
-                            ),
-                            child: Text(
-                              'Entrar',
-                              style: TextStyle(
-                                fontSize: 16.0,
+                          child: Text(
+                            'Entrar',
+                            style: TextStyle(
+                              fontSize: 16.0,
                             ),
                           ),
                         ),
@@ -532,11 +546,20 @@ class _LoginState extends State<Login> {
                     child: Column(
                       children: [
                         TextFormField(
-                          controller: _emailController,
+                          controller: _cpf_cnpjControllerCorp,
+                          inputFormatters: [maskCNPJ],
                           autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: validarEmail,
+                          validator: (value) {
+                            if (CPFValidator.isValid(value)) {
+                              return null;
+                            } else if (CNPJValidator.isValid(value)) {
+                              return null;
+                            } else {
+                              return 'CPF ou CNPJ inválido';
+                            }
+                          },
                           decoration: InputDecoration(
-                            labelText: 'Email corporativo',
+                            labelText: 'CPF/CNPJ',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             ),
@@ -544,7 +567,7 @@ class _LoginState extends State<Login> {
                         ),
                         SizedBox(height: 20),
                         TextFormField(
-                          controller: _passwordController,
+                          controller: _passwordControllerCorp,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: validarSenha,
                           obscureText: true,
@@ -561,8 +584,9 @@ class _LoginState extends State<Login> {
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      if(_formKey.currentState!.validate()){
-                        Route rota = MaterialPageRoute(builder: (context) => InicialSimulado());
+                      if (_formKey.currentState!.validate()) {
+                        Route rota = MaterialPageRoute(
+                            builder: (context) => InicialSimulado());
                         Navigator.push(context, rota);
                         //posteriormente implementar rota para a tela inicial do corporativo
                       }
@@ -660,5 +684,17 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+
+  String? validarSenha(String? value) {
+    final senhaRegex =
+        r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*&])[A-Za-z\d@$!%*?&]+$';
+    if (value == null || value.isEmpty) {
+      return 'Por favor, insira uma senha';
+    } else if (value.length < 8) {
+      return 'A senha deve ter no mínimo 8 caracteres';
+    } else {
+      return null; // retorna null se senha for válida
+    }
   }
 }
