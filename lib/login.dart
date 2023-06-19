@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:brasil_fields/brasil_fields.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -23,6 +25,44 @@ class _LoginState extends State<Login> {
       mask: '###.###.###-##', filter: {"#": RegExp(r'[0-9]')});
   var maskCNPJ = MaskTextInputFormatter(
       mask: '##.###.###/####-##', filter: {"#": RegExp(r'[0-9]')});
+
+  Future<void> _authenticateUser() async {
+    Map<String, dynamic> userData = {
+      'email': _cpf_cnpjControllerUser.text,
+      'senha': _passwordControllerUser.text
+    };
+
+    final response = await http.post(
+      Uri.parse('https://3f28-170-0-145-85.sa.ngrok.io/pessoa/auth'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(userData),
+    );
+
+    if (response.statusCode == 200) {
+      print("Login bem-sucedido");
+    } else {
+      print("Login mal-sucedido");
+    }
+  }
+
+  Future<void> _authenticateCorp() async {
+    Map<String, dynamic> userData = {
+      'email': _cpf_cnpjControllerCorp.text,
+      'senha': _passwordControllerCorp.text
+    };
+
+    final response = await http.post(
+      Uri.parse('https://3f28-170-0-145-85.sa.ngrok.io/pessoa/auth'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(userData),
+    );
+
+    if (response.statusCode == 200) {
+      print("Login bem-sucedido");
+    } else {
+      print("Login mal-sucedido");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,8 +144,9 @@ class _LoginState extends State<Login> {
                         ),
                         SizedBox(height: 20),
                         ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             if (_formKey.currentState!.validate()) {
+                              await _authenticateUser();
                               Route rota = MaterialPageRoute(
                                   builder: (context) => InicialSimulado());
                               Navigator.push(context, rota);
@@ -262,8 +303,9 @@ class _LoginState extends State<Login> {
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
+                        await _authenticateUser();
                         Route rota = MaterialPageRoute(
                             builder: (context) => InicialSimulado());
                         Navigator.push(context, rota);
@@ -430,8 +472,9 @@ class _LoginState extends State<Login> {
                         ),
                         SizedBox(height: 20),
                         ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             if (_formKey.currentState!.validate()) {
+                              await _authenticateCorp();
                               Route rota = MaterialPageRoute(
                                   builder: (context) => InicialSimulado());
                               Navigator.push(context, rota);
@@ -587,8 +630,9 @@ class _LoginState extends State<Login> {
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
+                        await _authenticateCorp();
                         Route rota = MaterialPageRoute(
                             builder: (context) => InicialSimulado());
                         Navigator.push(context, rota);
