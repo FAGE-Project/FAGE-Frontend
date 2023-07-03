@@ -158,7 +158,7 @@ class _CadastroCorpState extends State<CadastroCorp> {
                     children: [
                       TextFormField(
                         decoration: InputDecoration(
-                            labelText: "Nome",
+                            labelText: "E-mail",
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             )),
@@ -166,15 +166,14 @@ class _CadastroCorpState extends State<CadastroCorp> {
                       const SizedBox(height: 20.0),
                       TextFormField(
                         decoration: InputDecoration(
-                            labelText: "Sobrenome",
+                            labelText: "Nome da Empresa",
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             )),
                       ),
-                      const SizedBox(height: 20.0),
                       TextFormField(
                         decoration: InputDecoration(
-                            labelText: "CPF",
+                            labelText: "CNPJ",
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             )),
@@ -206,7 +205,7 @@ class _CadastroCorpState extends State<CadastroCorp> {
                       const SizedBox(height: 20.0),
                       TextFormField(
                         decoration: InputDecoration(
-                            labelText: "Email",
+                            labelText: "Senha",
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             )),
@@ -214,7 +213,39 @@ class _CadastroCorpState extends State<CadastroCorp> {
                       const SizedBox(height: 20.0),
                       TextFormField(
                         decoration: InputDecoration(
-                            labelText: "Senha",
+                            labelText: "Repetir Senha",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            )),
+                      ),
+                      const SizedBox(height: 20.0),
+                      TextFormField(
+                        decoration: InputDecoration(
+                            labelText: "Número do endereço",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            )),
+                      ),
+                      const SizedBox(height: 20.0),
+                      TextFormField(
+                        decoration: InputDecoration(
+                            labelText: "Estado",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            )),
+                      ),
+                      const SizedBox(height: 20.0),
+                      TextFormField(
+                        decoration: InputDecoration(
+                            labelText: "Cidade",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            )),
+                      ),
+                      const SizedBox(height: 20.0),
+                      TextFormField(
+                        decoration: InputDecoration(
+                            labelText: "Cargo",
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             )),
