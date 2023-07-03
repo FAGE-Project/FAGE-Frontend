@@ -10,7 +10,7 @@ class Cadastro extends StatefulWidget {
 }
 
 class _CadastroState extends State<Cadastro> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final PageController _pageController = PageController();
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,6 @@ class _CadastroState extends State<Cadastro> {
           controller: _pageController,
           children: [
             _buildUserRegister(),
-            _buildCorporateRegister(),
           ],
         ),
       ),
@@ -50,8 +49,70 @@ class _CadastroState extends State<Cadastro> {
                           child: Column(
                             children: [
                               TextFormField(
+                              decoration: InputDecoration(
+                                  labelText: "Nome",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  )),
+                              ),
+                              const SizedBox(height: 20.0),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                  labelText: "Sobrenome",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  )
+                                ),
+                              ),
+                              const SizedBox(height: 20.0),
+                              TextFormField(
                                 decoration: InputDecoration(
                                   labelText: "CPF",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  )
+                                ),
+                              ),
+                              const SizedBox(height: 20.0),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                  labelText: "CEP",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  )
+                                ),
+                              ),
+                              const SizedBox(height: 20.0),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                  labelText: "Endereço",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  )
+                                ),
+                              ),
+                              const SizedBox(height: 20.0),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                  labelText: "Telefone/Celular",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  )
+                                ),
+                              ),
+                              const SizedBox(height: 20.0),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                  labelText: "Email",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  )
+                                ),
+                              ),
+                              const SizedBox(height: 20.0),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                  labelText: "Senha",
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0),
                                   )
@@ -65,14 +126,94 @@ class _CadastroState extends State<Cadastro> {
                   ),
                 ],
               );
+            }else{
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  //colocar uma imagem depois,
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          decoration: InputDecoration(
+                              labelText: "Nome",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              )),
+                        ),
+                        const SizedBox(height: 20.0),
+                        TextFormField(
+                          decoration: InputDecoration(
+                              labelText: "Sobrenome",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              )
+                          ),
+                        ),
+                        const SizedBox(height: 20.0),
+                        TextFormField(
+                          decoration: InputDecoration(
+                              labelText: "CPF",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              )
+                          ),
+                        ),
+                        const SizedBox(height: 20.0),
+                        TextFormField(
+                          decoration: InputDecoration(
+                              labelText: "CEP",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              )
+                          ),
+                        ),
+                        const SizedBox(height: 20.0),
+                        TextFormField(
+                          decoration: InputDecoration(
+                              labelText: "Endereço",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              )
+                          ),
+                        ),
+                        const SizedBox(height: 20.0),
+                        TextFormField(
+                          decoration: InputDecoration(
+                              labelText: "Telefone/Celular",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              )
+                          ),
+                        ),
+                        const SizedBox(height: 20.0),
+                        TextFormField(
+                          decoration: InputDecoration(
+                              labelText: "Email",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              )
+                          ),
+                        ),
+                        const SizedBox(height: 20.0),
+                        TextFormField(
+                          decoration: InputDecoration(
+                              labelText: "Senha",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              )
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              );
             }
           }
         ),
       ),
     );
-  }
-
-  Widget _buildCorporateRegister(){
-
   }
 }
