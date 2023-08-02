@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CadastroCorp extends StatefulWidget {
-  const CadastroCorp({Key? key}) : super(key: key);
+class corpEdit extends StatefulWidget {
+  const corpEdit({Key? key}) : super(key: key);
 
   @override
-  State<CadastroCorp> createState() => _CadastroCorpState();
+  State<corpEdit> createState() => _corpEditState();
 }
 
-class _CadastroCorpState extends State<CadastroCorp> {
+class _corpEditState extends State<corpEdit> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final PageController _pageController = PageController();
 
@@ -29,17 +29,17 @@ class _CadastroCorpState extends State<CadastroCorp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Cadastro Empresa'),
+          title: Text('Edição Empresa'),
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(16.0),
-          child: _buildCorpRegister(),
+          child: _buildcorpEdit(),
         ),
       ),
     );
   }
 
-  Widget _buildCorpRegister() {
+  Widget _buildcorpEdit() {
     return Center(
       child: Form(
         key: _formKey,
@@ -90,13 +90,6 @@ class _CadastroCorpState extends State<CadastroCorp> {
             ),
             SizedBox(height: 16.0),
             _buildTextFieldWithIcon(
-              controller: repetirSenhaController,
-              icon: Icons.lock,
-              label: 'Repetir senha',
-              obscureText: true,
-            ),
-            SizedBox(height: 16.0),
-            _buildTextFieldWithIcon(
               controller: numeroEnderecoController,
               icon: Icons.home_work,
               label: 'Número do endereço',
@@ -130,7 +123,7 @@ class _CadastroCorpState extends State<CadastroCorp> {
                 primary: Colors.blue, // Cor de fundo do botão
               ),
               child: Text(
-                'Finalizar cadastro',
+                'Finalizar edição',
                 style: TextStyle(fontSize: 18.0),
               ),
             ),
@@ -167,8 +160,6 @@ class _CadastroCorpState extends State<CadastroCorp> {
 
   void _finalizarCadastro() {
     if (_formKey.currentState!.validate()) {
-      // Implementar aqui a lógica para finalizar o cadastro
-      // e salvar os dados inseridos nos campos.
     }
   }
 }
