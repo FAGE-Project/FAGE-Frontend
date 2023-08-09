@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-
 class Cadastro extends StatefulWidget {
   const Cadastro({Key? key}) : super(key: key);
 
@@ -16,8 +15,8 @@ class _CadastroState extends State<Cadastro> {
   final TextEditingController nomeController = TextEditingController();
   final TextEditingController sobrenomeController = TextEditingController();
   final TextEditingController cpfController = TextEditingController();
-  final TextEditingController cepController = TextEditingController();
   final TextEditingController enderecoController = TextEditingController();
+  final TextEditingController cepController = TextEditingController();
   final TextEditingController telefoneController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController senhaController = TextEditingController();
@@ -62,78 +61,52 @@ class _CadastroState extends State<Cadastro> {
                         key: _formKey,
                         child: Column(
                           children: [
-                            TextFormField(
+                            _buildTextFieldWithIcon(
                               controller: nomeController,
-                              decoration: InputDecoration(
-                                  labelText: "Nome",
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  )),
+                              icon: Icons.person,
+                              label: 'Nome',
                             ),
                             const SizedBox(height: 20.0),
-                            TextFormField(
+                            _buildTextFieldWithIcon(
                               controller: sobrenomeController,
-                              decoration: InputDecoration(
-                                  labelText: "Sobrenome",
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  )),
+                              icon: Icons.person,
+                              label: 'Sobrenome',
                             ),
                             const SizedBox(height: 20.0),
-                            TextFormField(
+                            _buildTextFieldWithIcon(
                               inputFormatters: [maskCPF],
                               controller: cpfController,
-                              decoration: InputDecoration(
-                                  labelText: "CPF",
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  )),
+                              icon: Icons.calendar_view_day,
+                              label: 'CPF',
                             ),
                             const SizedBox(height: 20.0),
-                            TextFormField(
-                              inputFormatters: [maskCEP],
+                            _buildTextFieldWithIcon(
+                                controller: enderecoController,
+                                icon: Icons.maps_home_work_rounded,
+                                label: 'Endereço'),
+                            const SizedBox(height: 20.0),
+                            _buildTextFieldWithIcon(
                               controller: cepController,
-                              decoration: InputDecoration(
-                                  labelText: "CEP",
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  )),
+                              icon: Icons.maps_home_work_rounded,
+                              label: 'CEP',
                             ),
                             const SizedBox(height: 20.0),
-                            TextFormField(
-                              controller: enderecoController,
-                              decoration: InputDecoration(
-                                  labelText: "Endereço",
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  )),
-                            ),
-                            const SizedBox(height: 20.0),
-                            TextFormField(
+                            _buildTextFieldWithIcon(
                               controller: telefoneController,
-                              decoration: InputDecoration(
-                                  labelText: "Telefone/Celular",
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  )),
+                              icon: Icons.contact_phone_rounded,
+                              label: 'Telefone/Celular',
                             ),
                             const SizedBox(height: 20.0),
-                            TextFormField(
+                            _buildTextFieldWithIcon(
                               controller: emailController,
-                              decoration: InputDecoration(
-                                  labelText: "Email",
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  )),
+                              icon: Icons.email_rounded,
+                              label: 'Email',
                             ),
                             const SizedBox(height: 20.0),
-                            TextFormField(
+                            _buildTextFieldWithIcon(
                               controller: senhaController,
-                              decoration: InputDecoration(
-                                  labelText: "Senha",
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  )),
+                              icon: Icons.password,
+                              label: 'Senha',
                             ),
                           ],
                         ),
@@ -152,78 +125,61 @@ class _CadastroState extends State<Cadastro> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      TextFormField(
+                      _buildTextFieldWithIcon(
                         controller: nomeController,
-                        decoration: InputDecoration(
-                            labelText: "Nome",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            )),
+                        icon: Icons.person,
+                        label: 'Nome',
                       ),
                       const SizedBox(height: 20.0),
-                      TextFormField(
+                      _buildTextFieldWithIcon(
                         controller: sobrenomeController,
-                        decoration: InputDecoration(
-                            labelText: "Sobrenome",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            )),
+                        icon: Icons.person,
+                        label: 'Sobrenome',
                       ),
                       const SizedBox(height: 20.0),
-                      TextFormField(
+                      _buildTextFieldWithIcon(
                         inputFormatters: [maskCPF],
                         controller: cpfController,
-                        decoration: InputDecoration(
-                            labelText: "CPF",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            )),
+                        icon: Icons.calendar_view_day,
+                        label: 'CPF',
                       ),
                       const SizedBox(height: 20.0),
-                      TextFormField(
-                        inputFormatters: [maskCEP],
-                        controller: cepController,
-                        decoration: InputDecoration(
-                            labelText: "CEP",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            )),
-                      ),
-                      const SizedBox(height: 20.0),
-                      TextFormField(
+                      _buildTextFieldWithIcon(
                         controller: enderecoController,
-                        decoration: InputDecoration(
-                            labelText: "Endereço",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            )),
+                        icon: Icons.maps_home_work_rounded,
+                        label: 'Endereço',
                       ),
                       const SizedBox(height: 20.0),
-                      TextFormField(
+                      _buildTextFieldWithIcon(
+                        controller: cepController,
+                        icon: Icons.maps_home_work_rounded,
+                        label: 'CEP',
+                      ),
+                      const SizedBox(height: 20.0),
+                      _buildTextFieldWithIcon(
                         controller: telefoneController,
-                        decoration: InputDecoration(
-                            labelText: "Telefone/Celular",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            )),
+                        icon: Icons.contact_phone_rounded,
+                        label: 'Telefone/Celular',
                       ),
                       const SizedBox(height: 20.0),
-                      TextFormField(
+                      _buildTextFieldWithIcon(
                         controller: emailController,
-                        decoration: InputDecoration(
-                            labelText: "Email",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            )),
+                        icon: Icons.email_rounded,
+                        label: 'Email',
                       ),
                       const SizedBox(height: 20.0),
-                      TextFormField(
+                      _buildTextFieldWithIcon(
                         controller: senhaController,
-                        decoration: InputDecoration(
-                            labelText: "Senha",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            )),
+                        icon: Icons.lock,
+                        label: 'Senha',
+                        obscureText: true,
+                      ),
+                      const SizedBox(height: 20.0),
+                      _buildTextFieldWithIcon(
+                        controller: senhaController,
+                        icon: Icons.lock,
+                        label: 'Repetir Senha',
+                        obscureText: true,
                       ),
                     ],
                   ),
@@ -233,6 +189,32 @@ class _CadastroState extends State<Cadastro> {
           }
         }),
       ),
+    );
+  }
+
+  Widget _buildTextFieldWithIcon({
+    required TextEditingController controller,
+    required IconData icon,
+    required String label,
+    inputFormatters,
+    bool obscureText = false,
+  }) {
+    return TextFormField(
+      controller: controller,
+      obscureText: obscureText,
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        prefixIcon: Icon(icon),
+      ),
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Campo obrigatório';
+        }
+        return null;
+      },
     );
   }
 }
