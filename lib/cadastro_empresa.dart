@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart'; // Importando o pacote para tirar fotos e escolher imagens
+import 'package:image_cropper/image_cropper.dart'; // Importando o pacote para recortar imagens
 
 class CadastroCorp extends StatefulWidget {
   const CadastroCorp({Key? key}) : super(key: key);
@@ -19,10 +21,41 @@ class _CadastroCorpState extends State<CadastroCorp> {
   final TextEditingController telefoneController = TextEditingController();
   final TextEditingController senhaController = TextEditingController();
   final TextEditingController repetirSenhaController = TextEditingController();
-  final TextEditingController numeroEnderecoController =TextEditingController();
+  final TextEditingController numeroEnderecoController =
+      TextEditingController();
   final TextEditingController estadoController = TextEditingController();
   final TextEditingController cidadeController = TextEditingController();
   final TextEditingController cargoController = TextEditingController();
+
+  // Variável para armazenar a imagem do avatar
+  late ImageProvider _avatarImage = AssetImage('assets/images/corp.png');
+
+  // Função para selecionar ou tirar uma foto e fazer o recorte (crop)
+  Future<void> _pickAndCropImage() async {
+    final pickedImage =
+        await ImagePicker().getImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      final croppedImage = await ImageCropper().cropImage(
+        sourcePath: pickedImage.path,
+        aspectRatioPresets: [CropAspectRatioPreset.square],
+        androidUiSettings: const AndroidUiSettings(
+          toolbarTitle: 'Recortar Imagem',
+          toolbarColor: Colors.deepOrange,
+          toolbarWidgetColor: Colors.white,
+          initAspectRatio: CropAspectRatioPreset.square,
+          lockAspectRatio: true,
+        ),
+        iosUiSettings: const IOSUiSettings(
+          title: 'Recortar Imagem',
+        ),
+      );
+      if (croppedImage != null) {
+        setState(() {
+          _avatarImage = FileImage(croppedImage); // Atualiza a imagem do avatar
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +72,22 @@ class _CadastroCorpState extends State<CadastroCorp> {
     );
   }
 
+  Widget _buildAvatar() {
+    return GestureDetector(
+      onTap:
+          _pickAndCropImage, // Chama a função para selecionar/tirar foto e recortar
+      child: CircleAvatar(
+        radius: 50,
+        backgroundImage: _avatarImage,
+        child: Icon(
+          Icons.camera_alt,
+          size: 30,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
   Widget _buildCorpRegister() {
     return Center(
       child: Form(
@@ -46,6 +95,7 @@ class _CadastroCorpState extends State<CadastroCorp> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            _buildAvatar(), // Mostra o ícone de avatar com a função de seleção/foto/recorte
             _buildTextFieldWithIcon(
               controller: emailController,
               icon: Icons.email,
