@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class Cadastro extends StatefulWidget {
@@ -20,6 +21,7 @@ class _CadastroState extends State<Cadastro> {
   final TextEditingController telefoneController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController senhaController = TextEditingController();
+  final TextEditingController repetirSenhaController = TextEditingController();
 
   var maskCPF = MaskTextInputFormatter(
       mask: '###.###.###-##', filter: {"#": RegExp(r'[0-9]')});
@@ -30,13 +32,14 @@ class _CadastroState extends State<Cadastro> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "login",
       home: Scaffold(
           appBar: AppBar(
-            title: Text('Cadastro Empresa'),
+            title: Text('Cadastro Usuário'),
           ),
           body: SingleChildScrollView(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(20.0),
             child: _buildUserRegister(),
           )),
     );
@@ -75,6 +78,7 @@ class _CadastroState extends State<Cadastro> {
                             const SizedBox(height: 20.0),
                             _buildTextFieldWithIcon(
                               inputFormatters: [maskCPF],
+                              keyboardType: TextInputType.number,
                               controller: cpfController,
                               icon: Icons.calendar_view_day,
                               label: 'CPF',
@@ -86,12 +90,15 @@ class _CadastroState extends State<Cadastro> {
                                 label: 'Endereço'),
                             const SizedBox(height: 20.0),
                             _buildTextFieldWithIcon(
+                              inputFormatters: [maskCEP],
+                              keyboardType: TextInputType.number,
                               controller: cepController,
                               icon: Icons.maps_home_work_rounded,
                               label: 'CEP',
                             ),
                             const SizedBox(height: 20.0),
                             _buildTextFieldWithIcon(
+                              keyboardType: TextInputType.number,
                               controller: telefoneController,
                               icon: Icons.contact_phone_rounded,
                               label: 'Telefone/Celular',
@@ -107,6 +114,29 @@ class _CadastroState extends State<Cadastro> {
                               controller: senhaController,
                               icon: Icons.password,
                               label: 'Senha',
+                              obscureText: true,
+                            ),
+                            const SizedBox(height: 20.0),
+                            _buildTextFieldWithIcon(
+                              controller: repetirSenhaController, 
+                              icon: Icons.lock, 
+                              label: 'Repetir senha',
+                              obscureText: true,
+                            ),
+                            SizedBox(height: 32.0),
+                            ElevatedButton(
+                              onPressed: _finalizarCadastro,
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                padding: EdgeInsets.symmetric(vertical: 16.0),
+                                primary: Colors.blue,
+                              ),
+                              child: Text(
+                                'Finalizar Cadastro',
+                                style: TextStyle(fontSize: 18.0),
+                              )
                             ),
                           ],
                         ),
@@ -139,6 +169,7 @@ class _CadastroState extends State<Cadastro> {
                       const SizedBox(height: 20.0),
                       _buildTextFieldWithIcon(
                         inputFormatters: [maskCPF],
+                        keyboardType: TextInputType.number,
                         controller: cpfController,
                         icon: Icons.calendar_view_day,
                         label: 'CPF',
@@ -151,12 +182,15 @@ class _CadastroState extends State<Cadastro> {
                       ),
                       const SizedBox(height: 20.0),
                       _buildTextFieldWithIcon(
+                        inputFormatters: [maskCEP],
+                        keyboardType: TextInputType.number,
                         controller: cepController,
                         icon: Icons.maps_home_work_rounded,
                         label: 'CEP',
                       ),
                       const SizedBox(height: 20.0),
                       _buildTextFieldWithIcon(
+                        keyboardType: TextInputType.number,
                         controller: telefoneController,
                         icon: Icons.contact_phone_rounded,
                         label: 'Telefone/Celular',
@@ -176,10 +210,25 @@ class _CadastroState extends State<Cadastro> {
                       ),
                       const SizedBox(height: 20.0),
                       _buildTextFieldWithIcon(
-                        controller: senhaController,
+                        controller: repetirSenhaController,
                         icon: Icons.lock,
                         label: 'Repetir Senha',
                         obscureText: true,
+                      ),
+                      SizedBox(height: 32.0),
+                      ElevatedButton(
+                        onPressed: _finalizarCadastro,
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          padding: EdgeInsets.symmetric(vertical: 16.0),
+                          primary: Colors.blue,
+                        ),
+                        child: Text(
+                          'Finalizar Cadastro',
+                          style: TextStyle(fontSize: 18.0),
+                        )
                       ),
                     ],
                   ),
@@ -197,6 +246,7 @@ class _CadastroState extends State<Cadastro> {
     required IconData icon,
     required String label,
     inputFormatters,
+    keyboardType,
     bool obscureText = false,
   }) {
     return TextFormField(
@@ -217,4 +267,12 @@ class _CadastroState extends State<Cadastro> {
       },
     );
   }
+  
+  void _finalizarCadastro(){
+    if (_formKey.currentState!.validate()) {
+      // Futuramente implementar aqui a lógica para finalizar o cadastro
+      // e salvar os dados inseridos nos campos.
+    }
+  }
+
 }

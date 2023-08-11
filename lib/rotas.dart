@@ -1,4 +1,4 @@
-import 'package:fage_telas/InicialSimulado.dart';
+import 'package:fage_telas/inicialSimulado.dart';
 import 'package:fage_telas/login.dart';
 import 'package:flutter/material.dart';
 
