@@ -30,7 +30,7 @@ class _CadastroCorpState extends State<CadastroCorp> {
   final TextEditingController cargoController = TextEditingController();
 
   // Variável para armazenar a imagem do avatar
-  late ImageProvider _avatarImage = AssetImage('assets/images/corp.png');
+  late ImageProvider _avatarImage = const AssetImage('assets/images/corpe.png');
 
   // Função para selecionar ou tirar uma foto e fazer o recorte (crop)
   Future<void> _pickAndCropImage() async {
