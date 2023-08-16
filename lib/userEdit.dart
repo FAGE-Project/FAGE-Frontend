@@ -63,19 +63,19 @@ class _UserEditState extends State<UserEdit> {
                           key: _formKey,
                           child: Column(
                             children: [
-                              _buildTextFieldWithIcon(
+                              TextFieldWithIcon(
                                 controller: nomeController, 
                                 icon: Icons.person, 
                                 label: 'Nome',
                               ),
                               const SizedBox(height: 20),
-                              _buildTextFieldWithIcon(
+                              TextFieldWithIcon(
                                 controller: sobrenomeController, 
                                 icon: Icons.person, 
                                 label: 'Sobrenome',
                               ),
                               const SizedBox(height: 20),
-                              _buildTextFieldWithIcon(
+                              TextFieldWithIcon(
                                 inputFormatters: [maskCPF],
                                 keyboardType: TextInputType.number,
                                 controller: cpfController, 
@@ -83,13 +83,13 @@ class _UserEditState extends State<UserEdit> {
                                 label: 'CPF',
                               ),
                               const SizedBox(height: 20),
-                              _buildTextFieldWithIcon(
+                              TextFieldWithIcon(
                                 controller: enderecoController, 
                                 icon: Icons.maps_home_work_rounded,
                                 label: 'Endereço',
                               ),
                               const SizedBox(height: 20),
-                              _buildTextFieldWithIcon(
+                              TextFieldWithIcon(
                                 inputFormatters: [maskCEP],
                                 keyboardType: TextInputType.number,
                                 controller: cepController, 
@@ -97,26 +97,26 @@ class _UserEditState extends State<UserEdit> {
                                 label: 'CEP',
                               ),
                               const SizedBox(height: 20),
-                              _buildTextFieldWithIcon(
+                              TextFieldWithIcon(
                                 keyboardType: TextInputType.number,
                                 controller: telefoneController, 
                                 icon: Icons.contact_phone_rounded, 
                                 label: 'Telefone/Celular',
                               ),
                               const SizedBox(height: 20),
-                              _buildTextFieldWithIcon(
+                              TextFieldWithIcon(
                                 controller: emailController, 
                                 icon: Icons.email, 
                                 label: 'Email',
                               ),
                               const SizedBox(height: 20),
-                              _buildTextFieldWithIcon(
+                              TextFieldWithIcon(
                                 controller: senhaController, 
                                 icon: Icons.lock, 
                                 label: 'Senha',
                               ),
                               const SizedBox(height: 20),
-                              _buildTextFieldWithIcon(
+                              TextFieldWithIcon(
                                 controller: repetirSenhaController, 
                                 icon: Icons.lock, 
                                 label: 'Repetir Senha',
@@ -152,19 +152,19 @@ class _UserEditState extends State<UserEdit> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        _buildTextFieldWithIcon(
+                        TextFieldWithIcon(
                           controller: nomeController,
                           icon: Icons.person, 
                           label: 'Nome'
                         ),
                         const SizedBox(height: 20),
-                        _buildTextFieldWithIcon(
+                        TextFieldWithIcon(
                           controller: sobrenomeController, 
                           icon: Icons.person, 
                           label: 'Sobrenome'
                         ),
                         const SizedBox(height: 20),
-                        _buildTextFieldWithIcon(
+                        TextFieldWithIcon(
                           inputFormatters: [maskCPF],
                           keyboardType: TextInputType.number,
                           controller: cpfController, 
@@ -172,13 +172,13 @@ class _UserEditState extends State<UserEdit> {
                           label: 'CPF'
                         ),
                         const SizedBox(height: 20),
-                        _buildTextFieldWithIcon(
+                        TextFieldWithIcon(
                           controller: enderecoController, 
                           icon: Icons.maps_home_work_rounded, 
                           label: 'Endereço'
                         ),
                         const SizedBox(height: 20),
-                        _buildTextFieldWithIcon(
+                        TextFieldWithIcon(
                           inputFormatters: [maskCEP],
                           keyboardType: TextInputType.number,
                           controller: cepController,
@@ -186,26 +186,26 @@ class _UserEditState extends State<UserEdit> {
                           label: 'CEP'
                         ),
                         const SizedBox(height: 20),
-                        _buildTextFieldWithIcon(
+                        TextFieldWithIcon(
                           keyboardType: TextInputType.number,
                           controller: telefoneController, 
                           icon: Icons.contact_phone_rounded, 
                           label: 'Telefone/Celular',
                         ),
                         const SizedBox(height: 20),
-                        _buildTextFieldWithIcon(
+                        TextFieldWithIcon(
                           controller: emailController, 
                           icon: Icons.mail, 
                           label: 'Email',
                         ),
                         const SizedBox(height: 20),
-                        _buildTextFieldWithIcon(
+                        TextFieldWithIcon(
                           controller: senhaController, 
                           icon: Icons.lock, 
                           label: 'Senha',
                         ),
                         const SizedBox(height: 20),
-                        _buildTextFieldWithIcon(
+                        TextFieldWithIcon(
                           controller: repetirSenhaController, 
                           icon: Icons.lock, 
                           label: 'Repetir senha',
@@ -237,7 +237,7 @@ class _UserEditState extends State<UserEdit> {
     );
   }
 
-  Widget _buildTextFieldWithIcon({
+  Widget TextFieldWithIcon({
     required TextEditingController controller,
     required IconData icon,
     required String label,

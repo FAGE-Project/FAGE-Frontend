@@ -1,3 +1,4 @@
+import 'package:fage_telas/components/TextFieldWithIcon.dart';
 import 'package:flutter/material.dart';
 
 class CadastroCorp extends StatefulWidget {
@@ -46,75 +47,75 @@ class _CadastroCorpState extends State<CadastroCorp> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _buildTextFieldWithIcon(
+            TextFieldWithIcon(
               controller: emailController,
               icon: Icons.email,
               label: 'E-mail',
             ),
             SizedBox(height: 16.0),
-            _buildTextFieldWithIcon(
+            TextFieldWithIcon(
               controller: empresaController,
               icon: Icons.business,
               label: 'Nome da Empresa',
             ),
             SizedBox(height: 16.0),
-            _buildTextFieldWithIcon(
+            TextFieldWithIcon(
               controller: cnpjController,
               icon: Icons.code,
               label: 'CNPJ',
             ),
             SizedBox(height: 16.0),
-            _buildTextFieldWithIcon(
+            TextFieldWithIcon(
               controller: cepController,
               icon: Icons.location_on,
               label: 'CEP',
             ),
             SizedBox(height: 16.0),
-            _buildTextFieldWithIcon(
+            TextFieldWithIcon(
               controller: enderecoController,
               icon: Icons.home,
               label: 'Endereço',
             ),
             SizedBox(height: 16.0),
-            _buildTextFieldWithIcon(
+            TextFieldWithIcon(
               controller: telefoneController,
               icon: Icons.phone,
               label: 'Telefone/Celular',
             ),
             SizedBox(height: 16.0),
-            _buildTextFieldWithIcon(
+            TextFieldWithIcon(
               controller: senhaController,
               icon: Icons.lock,
               label: 'Senha',
               obscureText: true,
             ),
             SizedBox(height: 16.0),
-            _buildTextFieldWithIcon(
+            TextFieldWithIcon(
               controller: repetirSenhaController,
               icon: Icons.lock,
               label: 'Repetir senha',
               obscureText: true,
             ),
             SizedBox(height: 16.0),
-            _buildTextFieldWithIcon(
+            TextFieldWithIcon(
               controller: numeroEnderecoController,
               icon: Icons.home_work,
               label: 'Número do endereço',
             ),
             SizedBox(height: 16.0),
-            _buildTextFieldWithIcon(
+            TextFieldWithIcon(
               controller: estadoController,
               icon: Icons.map,
               label: 'Estado',
             ),
             SizedBox(height: 16.0),
-            _buildTextFieldWithIcon(
+            TextFieldWithIcon(
               controller: cidadeController,
               icon: Icons.location_city,
               label: 'Cidade',
             ),
             SizedBox(height: 16.0),
-            _buildTextFieldWithIcon(
+            TextFieldWithIcon(
               controller: cargoController,
               icon: Icons.work,
               label: 'Cargo',
@@ -137,31 +138,6 @@ class _CadastroCorpState extends State<CadastroCorp> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildTextFieldWithIcon({
-    required TextEditingController controller,
-    required IconData icon,
-    required String label,
-    bool obscureText = false,
-  }) {
-    return TextFormField(
-      controller: controller,
-      obscureText: obscureText,
-      decoration: InputDecoration(
-        labelText: label,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        prefixIcon: Icon(icon),
-      ),
-      validator: (value) {
-        if (value!.isEmpty) {
-          return 'Campo obrigatório';
-        }
-        return null;
-      },
     );
   }
 
