@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart'; // Importando o pacote para tirar fotos e escolher imagens
 import 'package:image_cropper/image_cropper.dart'; // Importando o pacote para recortar imagens
@@ -33,25 +35,27 @@ class _CadastroCorpState extends State<CadastroCorp> {
   // Função para selecionar ou tirar uma foto e fazer o recorte (crop)
   Future<void> _pickAndCropImage() async {
     final pickedImage =
-        await ImagePicker().getImage(source: ImageSource.gallery);
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
       final croppedImage = await ImageCropper().cropImage(
         sourcePath: pickedImage.path,
         aspectRatioPresets: [CropAspectRatioPreset.square],
-        androidUiSettings: const AndroidUiSettings(
-          toolbarTitle: 'Recortar Imagem',
-          toolbarColor: Colors.deepOrange,
-          toolbarWidgetColor: Colors.white,
-          initAspectRatio: CropAspectRatioPreset.square,
-          lockAspectRatio: true,
-        ),
-        iosUiSettings: const IOSUiSettings(
-          title: 'Recortar Imagem',
-        ),
+        uiSettings: [
+          AndroidUiSettings(
+            toolbarTitle: 'Recortar Imagem',
+            toolbarColor: Colors.deepOrange,
+            toolbarWidgetColor: Colors.white,
+            initAspectRatio: CropAspectRatioPreset.square,
+            lockAspectRatio: true,
+          ),
+          IOSUiSettings(
+            title: 'Recortar Imagem',
+          ),
+        ],
       );
       if (croppedImage != null) {
         setState(() {
-          _avatarImage = FileImage(croppedImage); // Atualiza a imagem do avatar
+          _avatarImage = FileImage(croppedImage as File); // Atualiza a imagem do avatar
         });
       }
     }
@@ -95,7 +99,8 @@ class _CadastroCorpState extends State<CadastroCorp> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _buildAvatar(), // Mostra o ícone de avatar com a função de seleção/foto/recorte
+            _buildAvatar(),
+            // Mostra o ícone de avatar com a função de seleção/foto/recorte
             _buildTextFieldWithIcon(
               controller: emailController,
               icon: Icons.email,
