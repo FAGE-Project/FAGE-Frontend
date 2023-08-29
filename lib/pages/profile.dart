@@ -1,3 +1,4 @@
+import 'package:fage/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -287,6 +288,32 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   SizedBox(height: 20),
+                  TextButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(Routes.cadastroCorp);
+                    },
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        side: BorderSide(
+                          width: 2.0,
+                        ),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        vertical: 12.0,
+                        horizontal: 20.0,
+                      ),
+                    ),
+                    icon: Icon(
+                      Icons.corporate_fare,
+                    ),
+                    label: Text(
+                      'Cadastrar empresa',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
                 ],
               );
             }

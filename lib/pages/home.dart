@@ -1,6 +1,7 @@
 import 'package:fage/components/custom_text_form_field.dart';
 import 'package:fage/pages/my_fage.dart';
 import 'package:fage/pages/profile.dart';
+import 'package:fage/pages/register_corp.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -53,7 +54,7 @@ class _HomeState extends State<Home> {
       ),
       body: <Widget>[
         const MyFage(),
-        Container(),
+        const CadastroCorp(),
         Container(),
         const Profile(),
       ][currentPageIndex],
