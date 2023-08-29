@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:sign_in_button/sign_in_button.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -57,19 +58,6 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: PageView(
-        controller: _pageController,
-        children: [
-          _buildUserProfile(),
-          _buildCorporateProfile(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildUserProfile() {
     return Center(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -80,80 +68,42 @@ class _ProfileState extends State<Profile> {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
+                  Form(
+                    key: _formKey,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(height: 20),
-                        Form(
-                          key: _formKey,
-                          child: Column(
-                            children: [
-                              TextFormField(
-                                controller: _cpf_cnpjControllerUser,
-                                keyboardType: TextInputType.number,
-                                autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                                validator: (value) {
-                                  // if (CPFValidator.isValid(value)) {
-                                  //   return null;
-                                  // } else {
-                                  //   return 'CPF inválido';
-                                  // }
-                                },
-                                decoration: InputDecoration(
-                                  labelText: 'CPF',
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 20),
-                              TextFormField(
-                                controller: _passwordControllerUser,
-                                autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                                validator: validarSenha,
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                  labelText: 'Senha',
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                ),
-                              ),
-                            ],
+                        TextFormField(
+                          controller: _cpf_cnpjControllerUser,
+                          keyboardType: TextInputType.number,
+                          autovalidateMode:
+                          AutovalidateMode.onUserInteraction,
+                          validator: (value) {
+                            // if (CPFValidator.isValid(value)) {
+                            //   return null;
+                            // } else {
+                            //   return 'CPF inválido';
+                            // }
+                          },
+                          decoration: InputDecoration(
+                            labelText: 'CPF',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
                           ),
                         ),
-                        SizedBox(height: 20),
-                        // ElevatedButton(
-                        //   onPressed: () async {
-                        //     if (_formKey.currentState!.validate()) {
-                        //       await _authenticateUser();
-                        //       Route rota = MaterialPageRoute(
-                        //           builder: (context) => InicialSimulado());
-                        //       Navigator.push(context, rota);
-                        //       //posteriormente adicionar caminho para tela inicial
-                        //       //implementar um navigator push, dentro deste if para a tela que será criada futuramente.
-                        //     }
-                        //   },
-                        //   style: ElevatedButton.styleFrom(
-                        //     shape: RoundedRectangleBorder(
-                        //       borderRadius: BorderRadius.circular(20.0),
-                        //     ),
-                        //     padding: EdgeInsets.symmetric(
-                        //       vertical: 12.0,
-                        //       horizontal: 20.0,
-                        //     ),
-                        //   ),
-                        //   child: Text(
-                        //     'Entrar',
-                        //     style: TextStyle(
-                        //       fontSize: 16.0,
-                        //     ),
-                        //   ),
-                        // ),
-                        SizedBox(height: 20),
+                        TextFormField(
+                          controller: _passwordControllerUser,
+                          autovalidateMode:
+                          AutovalidateMode.onUserInteraction,
+                          validator: validarSenha,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            labelText: 'Senha',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                          ),
+                        ),
                         TextButton(
                           onPressed: () {
                             // TODO: Navigate to the forgot password screen
@@ -168,27 +118,27 @@ class _ProfileState extends State<Profile> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // SignInButton(
-                        //   Buttons.Google,
-                        //   onPressed: () {
-                        //     // TODO: Profile with Google
-                        //   },
-                        //   shape: RoundedRectangleBorder(
-                        //     borderRadius: BorderRadius.circular(20.0),
-                        //   ),
-                        //   text: 'Entrar com Google',
-                        // ),
+                        SignInButton(
+                          Buttons.google,
+                          onPressed: () {
+                            // TODO: Profile with Google
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          text: 'Entrar com Google',
+                        ),
                         SizedBox(height: 10),
-                        // SignInButton(
-                        //   Buttons.Facebook,
-                        //   onPressed: () {
-                        //     // TODO: Profile with Facebook
-                        //   },
-                        //   shape: RoundedRectangleBorder(
-                        //     borderRadius: BorderRadius.circular(20.0),
-                        //   ),
-                        //   text: 'Entrar com Facebook',
-                        // ),
+                        SignInButton(
+                          Buttons.facebook,
+                          onPressed: () {
+                            // TODO: Profile with Facebook
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          text: 'Entrar com Facebook',
+                        ),
                         SizedBox(height: 20),
                         TextButton.icon(
                           onPressed: () {
@@ -238,9 +188,8 @@ class _ProfileState extends State<Profile> {
             } else {
               // For screens narrower than 600px, show the Profile form in a single column
               return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 20),
+                  SizedBox(height: 60),
                   Form(
                     key: _formKey,
                     child: Column(
@@ -279,34 +228,6 @@ class _ProfileState extends State<Profile> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20),
-                  // ElevatedButton(
-                  //   onPressed: () async {
-                  //     if (_formKey.currentState!.validate()) {
-                  //       await _authenticateUser();
-                  //       Route rota = MaterialPageRoute(
-                  //           builder: (context) => InicialSimulado());
-                  //       Navigator.push(context, rota);
-                  //       // futuramente implementar a rota para a tela seguinte.
-                  //     }
-                  //   },
-                  //   style: ElevatedButton.styleFrom(
-                  //     shape: RoundedRectangleBorder(
-                  //       borderRadius: BorderRadius.circular(20.0),
-                  //     ),
-                  //     padding: EdgeInsets.symmetric(
-                  //       vertical: 12.0,
-                  //       horizontal: 20.0,
-                  //     ),
-                  //   ),
-                  //   child: Text(
-                  //     'Entrar',
-                  //     style: TextStyle(
-                  //       fontSize: 16.0,
-                  //     ),
-                  //   ),
-                  // ),
-                  SizedBox(height: 20),
                   TextButton(
                     onPressed: () {
                       // TODO: Navigate to the forgot password screen
@@ -314,27 +235,27 @@ class _ProfileState extends State<Profile> {
                     child: Text('Esqueci minha senha'),
                   ),
                   SizedBox(height: 20),
-                  // SignInButton(
-                  //   Buttons.Google,
-                  //   onPressed: () {
-                  //     // TODO: Profile with Google
-                  //   },
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(20.0),
-                  //   ),
-                  //   text: 'Entrar com Google',
-                  // ),
+                  SignInButton(
+                    Buttons.google,
+                    onPressed: () {
+                      // TODO: Profile with Google
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    text: 'Entrar com Google',
+                  ),
                   SizedBox(height: 10),
-                  // SignInButton(
-                  //   Buttons.Facebook,
-                  //   onPressed: () {
-                  //     // TODO: Profile with Facebook
-                  //   },
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(20.0),
-                  //   ),
-                  //   text: 'Entrar com Facebook',
-                  // ),
+                  SignInButton(
+                    Buttons.facebook,
+                    onPressed: () {
+                      // TODO: Profile with Facebook
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    text: 'Entrar com Facebook',
+                  ),
                   SizedBox(height: 20),
                   TextButton.icon(
                     onPressed: () {
@@ -366,16 +287,6 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  TextButton(
-                    onPressed: () {
-                      _pageController.animateToPage(
-                        1,
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.ease,
-                      );
-                    },
-                    child: Text('Perfil Corporativo'),
-                  ),
                 ],
               );
             }
@@ -484,27 +395,27 @@ class _ProfileState extends State<Profile> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // SignInButton(
-                        //   Buttons.Google,
-                        //   onPressed: () {
-                        //     // TODO: Profile with Google
-                        //   },
-                        //   shape: RoundedRectangleBorder(
-                        //     borderRadius: BorderRadius.circular(20.0),
-                        //   ),
-                        //   text: 'Entrar com Google',
-                        // ),
+                        SignInButton(
+                          Buttons.google,
+                          onPressed: () {
+                            // TODO: Profile with Google
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          text: 'Entrar com Google',
+                        ),
                         SizedBox(height: 10),
-                        // SignInButton(
-                        //   Buttons.Facebook,
-                        //   onPressed: () {
-                        //     // TODO: Profile with Facebook
-                        //   },
-                        //   shape: RoundedRectangleBorder(
-                        //     borderRadius: BorderRadius.circular(20.0),
-                        //   ),
-                        //   text: 'Entrar com Facebook',
-                        // ),
+                        SignInButton(
+                          Buttons.facebook,
+                          onPressed: () {
+                            // TODO: Profile with Facebook
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          text: 'Entrar com Facebook',
+                        ),
                         SizedBox(height: 20),
                         TextButton.icon(
                           onPressed: () {
@@ -630,27 +541,27 @@ class _ProfileState extends State<Profile> {
                     child: Text('Esqueci minha senha'),
                   ),
                   SizedBox(height: 20),
-                  // SignInButton(
-                  //   Buttons.Google,
-                  //   onPressed: () {
-                  //     // TODO: Profile with Google
-                  //   },
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(20.0),
-                  //   ),
-                  //   text: 'Entrar com Google',
-                  // ),
+                  SignInButton(
+                    Buttons.google,
+                    onPressed: () {
+                      // TODO: Profile with Google
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    text: 'Entrar com Google',
+                  ),
                   SizedBox(height: 10),
-                  // SignInButton(
-                  //   Buttons.Facebook,
-                  //   onPressed: () {
-                  //     // TODO: Profile with Facebook
-                  //   },
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(20.0),
-                  //   ),
-                  //   text: 'Entrar com Facebook',
-                  // ),
+                  SignInButton(
+                    Buttons.facebook,
+                    onPressed: () {
+                      // TODO: Profile with Facebook
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    text: 'Entrar com Facebook',
+                  ),
                   SizedBox(height: 20),
                   TextButton.icon(
                     onPressed: () {
