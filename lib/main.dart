@@ -7,5 +7,5 @@ import 'package:fage_telas/userEdit.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(cadastroUser());
+  runApp(UserEdit());
 }
