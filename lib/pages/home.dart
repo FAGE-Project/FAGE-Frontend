@@ -1,4 +1,5 @@
 import 'package:fage/components/custom_text_form_field.dart';
+import 'package:fage/pages/login.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -113,7 +114,7 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-        Container(),
+        Login(),
         Container(),
         Container(),
       ][currentPageIndex],
