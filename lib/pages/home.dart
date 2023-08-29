@@ -54,7 +54,7 @@ class _HomeState extends State<Home> {
       ),
       body: <Widget>[
         const MyFage(),
-        const CadastroCorp(),
+        Container(),
         Container(),
         const Profile(),
       ][currentPageIndex],

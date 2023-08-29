@@ -314,6 +314,33 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 20),
+                  TextButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(Routes.cadastroUser);
+                    },
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        side: BorderSide(
+                          width: 2.0,
+                        ),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        vertical: 12.0,
+                        horizontal: 20.0,
+                      ),
+                    ),
+                    icon: Icon(
+                      Icons.corporate_fare,
+                    ),
+                    label: Text(
+                      'Cadastrar usuário',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
                 ],
               );
             }
