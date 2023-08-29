@@ -1,4 +1,5 @@
-import 'package:fage/pages/home.dart';
+
+import 'package:fage_telas/pages/home.dart';
 import 'package:flutter/material.dart';
 
 class Routes {

@@ -1,11 +1,23 @@
-import 'package:fage_telas/cadastro_empresa.dart';
-
-import 'package:fage_telas/corpEdit.dart';
-import 'package:fage_telas/login.dart';
-import 'package:fage_telas/cadastroUser.dart';
-import 'package:fage_telas/userEdit.dart';
+import 'package:fage_telas/components/theme-data/dark_theme.dart';
+import 'package:fage_telas/components/theme-data/light_theme.dart';
+import 'package:fage_telas/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(UserEdit());
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      initialRoute: Routes.home,
+      theme: LightThemeData().themeData,
+      darkTheme: DarkThemeData().themeData,
+      routes: Routes.list,
+    );
+  }
 }

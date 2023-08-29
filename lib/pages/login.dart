@@ -1,4 +1,5 @@
-import 'package:fage_telas/inicialSimulado.dart';
+
+import 'package:fage_telas/pages/inicialSimulado.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
