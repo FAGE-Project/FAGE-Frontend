@@ -1,5 +1,6 @@
 import 'package:fage/components/custom_text_form_field.dart';
-import 'package:fage/pages/login.dart';
+import 'package:fage/pages/my_fage.dart';
+import 'package:fage/pages/profile.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -51,72 +52,10 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: <Widget>[
-        const Column(
-          children: [
-            CustomTextFormField(labelText: "Pesquisar", prefixIcon: Icons.search),
-            SizedBox(height: 10),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  Column(
-                    children: [
-                      CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          minRadius: 45,
-                          backgroundImage:
-                          AssetImage("assets/images/barbeiro.jpg")),
-                      SizedBox(height: 10),
-                      Text("Barbearias")
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          minRadius: 45,
-                          backgroundImage:
-                          AssetImage("assets/images/barbeiro.jpg")),
-                      SizedBox(height: 10),
-                      Text("Salões de\nbeleza", textAlign: TextAlign.center)
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          minRadius: 45,
-                          backgroundImage:
-                          AssetImage("assets/images/barbeiro.jpg")),
-                      SizedBox(height: 10),
-                      Text(
-                        "Saúde &\nBem-estar",
-                        textAlign: TextAlign.center,
-                      )
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          minRadius: 45,
-                          backgroundImage:
-                          AssetImage("assets/images/barbeiro.jpg")),
-                      SizedBox(height: 10),
-                      Text(
-                        "Spa &\nmassagem",
-                        textAlign: TextAlign.center,
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        Login(),
+        const MyFage(),
         Container(),
         Container(),
+        const Profile(),
       ][currentPageIndex],
     );
   }

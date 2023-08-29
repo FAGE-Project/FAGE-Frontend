@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class Profile extends StatefulWidget {
+  const Profile({Key? key}) : super(key: key);
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _LoginState extends State<Login> {
+class _ProfileState extends State<Profile> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final PageController _pageController = PageController();
   final TextEditingController _cpf_cnpjControllerUser = TextEditingController();
@@ -30,9 +30,9 @@ class _LoginState extends State<Login> {
     );
 
     if (response.statusCode == 200) {
-      print("Login bem-sucedido");
+      print("Profile bem-sucedido");
     } else {
-      print("Login mal-sucedido");
+      print("Profile mal-sucedido");
     }
   }
 
@@ -49,9 +49,9 @@ class _LoginState extends State<Login> {
     );
 
     if (response.statusCode == 200) {
-      print("Login bem-sucedido");
+      print("Profile bem-sucedido");
     } else {
-      print("Login mal-sucedido");
+      print("Profile mal-sucedido");
     }
   }
 
@@ -62,21 +62,21 @@ class _LoginState extends State<Login> {
       body: PageView(
         controller: _pageController,
         children: [
-          _buildUserLogin(),
-          _buildCorporateLogin(),
+          _buildUserProfile(),
+          _buildCorporateProfile(),
         ],
       ),
     );
   }
 
-  Widget _buildUserLogin() {
+  Widget _buildUserProfile() {
     return Center(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.0),
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
             if (constraints.maxWidth > 600) {
-              // For screens wider than 600px, show the login form in two columns
+              // For screens wider than 600px, show the Profile form in two columns
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -84,10 +84,6 @@ class _LoginState extends State<Login> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          'assets/images/user.png',
-                          width: 100,
-                        ),
                         SizedBox(height: 20),
                         Form(
                           key: _formKey,
@@ -175,7 +171,7 @@ class _LoginState extends State<Login> {
                         // SignInButton(
                         //   Buttons.Google,
                         //   onPressed: () {
-                        //     // TODO: Login with Google
+                        //     // TODO: Profile with Google
                         //   },
                         //   shape: RoundedRectangleBorder(
                         //     borderRadius: BorderRadius.circular(20.0),
@@ -186,7 +182,7 @@ class _LoginState extends State<Login> {
                         // SignInButton(
                         //   Buttons.Facebook,
                         //   onPressed: () {
-                        //     // TODO: Login with Facebook
+                        //     // TODO: Profile with Facebook
                         //   },
                         //   shape: RoundedRectangleBorder(
                         //     borderRadius: BorderRadius.circular(20.0),
@@ -232,7 +228,7 @@ class _LoginState extends State<Login> {
                               curve: Curves.ease,
                             );
                           },
-                          child: Text('Login Corporativo'),
+                          child: const Text("Perfil Corporativo"),
                         ),
                       ],
                     ),
@@ -240,14 +236,10 @@ class _LoginState extends State<Login> {
                 ],
               );
             } else {
-              // For screens narrower than 600px, show the login form in a single column
+              // For screens narrower than 600px, show the Profile form in a single column
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/images/user.png',
-                    width: 100,
-                  ),
                   SizedBox(height: 20),
                   Form(
                     key: _formKey,
@@ -325,7 +317,7 @@ class _LoginState extends State<Login> {
                   // SignInButton(
                   //   Buttons.Google,
                   //   onPressed: () {
-                  //     // TODO: Login with Google
+                  //     // TODO: Profile with Google
                   //   },
                   //   shape: RoundedRectangleBorder(
                   //     borderRadius: BorderRadius.circular(20.0),
@@ -336,7 +328,7 @@ class _LoginState extends State<Login> {
                   // SignInButton(
                   //   Buttons.Facebook,
                   //   onPressed: () {
-                  //     // TODO: Login with Facebook
+                  //     // TODO: Profile with Facebook
                   //   },
                   //   shape: RoundedRectangleBorder(
                   //     borderRadius: BorderRadius.circular(20.0),
@@ -382,7 +374,7 @@ class _LoginState extends State<Login> {
                         curve: Curves.ease,
                       );
                     },
-                    child: Text('Login Corporativo'),
+                    child: Text('Perfil Corporativo'),
                   ),
                 ],
               );
@@ -393,14 +385,14 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget _buildCorporateLogin() {
+  Widget _buildCorporateProfile() {
     return Center(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.0),
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
             if (constraints.maxWidth > 600) {
-              // For screens wider than 600px, show the login form in two columns
+              // For screens wider than 600px, show the Profile form in two columns
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -408,10 +400,6 @@ class _LoginState extends State<Login> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          'assets/images/corpe.png',
-                          width: 100,
-                        ),
                         SizedBox(height: 20),
                         Form(
                           key: _formKey,
@@ -499,7 +487,7 @@ class _LoginState extends State<Login> {
                         // SignInButton(
                         //   Buttons.Google,
                         //   onPressed: () {
-                        //     // TODO: Login with Google
+                        //     // TODO: Profile with Google
                         //   },
                         //   shape: RoundedRectangleBorder(
                         //     borderRadius: BorderRadius.circular(20.0),
@@ -510,7 +498,7 @@ class _LoginState extends State<Login> {
                         // SignInButton(
                         //   Buttons.Facebook,
                         //   onPressed: () {
-                        //     // TODO: Login with Facebook
+                        //     // TODO: Profile with Facebook
                         //   },
                         //   shape: RoundedRectangleBorder(
                         //     borderRadius: BorderRadius.circular(20.0),
@@ -556,7 +544,7 @@ class _LoginState extends State<Login> {
                               curve: Curves.ease,
                             );
                           },
-                          child: Text('Login de Usuário'),
+                          child: Text('Perfil de Usuário'),
                         ),
                       ],
                     ),
@@ -564,15 +552,10 @@ class _LoginState extends State<Login> {
                 ],
               );
             } else {
-              // For screens narrower than 600px, show the login form in a single column
+              // For screens narrower than 600px, show the Profile form in a single column
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/images/corpe.png',
-                    width: 100,
-                  ),
-                  SizedBox(height: 20),
                   Form(
                     child: Column(
                       children: [
@@ -650,7 +633,7 @@ class _LoginState extends State<Login> {
                   // SignInButton(
                   //   Buttons.Google,
                   //   onPressed: () {
-                  //     // TODO: Login with Google
+                  //     // TODO: Profile with Google
                   //   },
                   //   shape: RoundedRectangleBorder(
                   //     borderRadius: BorderRadius.circular(20.0),
@@ -661,7 +644,7 @@ class _LoginState extends State<Login> {
                   // SignInButton(
                   //   Buttons.Facebook,
                   //   onPressed: () {
-                  //     // TODO: Login with Facebook
+                  //     // TODO: Profile with Facebook
                   //   },
                   //   shape: RoundedRectangleBorder(
                   //     borderRadius: BorderRadius.circular(20.0),
@@ -707,7 +690,7 @@ class _LoginState extends State<Login> {
                         curve: Curves.ease,
                       );
                     },
-                    child: Text('Login de Usuário'),
+                    child: Text('Perfil de Usuário'),
                   ),
                 ],
               );
