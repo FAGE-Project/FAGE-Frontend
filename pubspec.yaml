@@ -39,6 +39,8 @@ dependencies:
   sign_in_button: ^3.2.0
   mask_text_input_formatter:
   brasil_fields:
+  date_picker_timeline:
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +69,8 @@ flutter:
     - assets/images/fage-logo.png
     - assets/images/fage-logo-white.png
     - assets/images/barbeiro.jpg
+    - assets/images/fun1.png
+    - assets/images/fun2.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
