@@ -1,6 +1,8 @@
 import 'package:fage/components/custom_text_form_field.dart';
 import 'package:fage/pages/my_fage.dart';
 import 'package:fage/pages/profile.dart';
+import 'package:fage/pages/agendamento.dart';
+import 'package:fage/pages/empresa.dart';
 import 'package:fage/pages/register_corp.dart';
 import 'package:flutter/material.dart';
 
@@ -50,13 +52,19 @@ class _HomeState extends State<Home> {
             icon: Icon(Icons.person_outline),
             label: "Perfil",
           ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.person),
+            icon: Icon(Icons.person_outline),
+            label: "Teste",
+          ),
         ],
       ),
       body: <Widget>[
         const MyFage(),
         Container(),
-        Container(),
+        Agendamento(),
         const Profile(),
+        EmpresaScreen(),
       ][currentPageIndex],
     );
   }
