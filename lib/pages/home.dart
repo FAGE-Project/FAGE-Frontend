@@ -37,11 +37,11 @@ class _HomeState extends State<Home> {
             icon: Icon(Icons.favorite_outline),
             label: "Meu Fage",
           ),
-          NavigationDestination(
-            icon: Icon(Icons.search),
-            selectedIcon: Icon(Icons.search),
-            label: "Pesquisar",
-          ),
+          // NavigationDestination(
+          //   icon: Icon(Icons.search),
+          //   selectedIcon: Icon(Icons.search),
+          //   label: "Pesquisar",
+          // ),
           NavigationDestination(
             selectedIcon: Icon(Icons.calendar_today),
             icon: Icon(Icons.calendar_today_outlined),
@@ -52,19 +52,12 @@ class _HomeState extends State<Home> {
             icon: Icon(Icons.person_outline),
             label: "Perfil",
           ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.person),
-            icon: Icon(Icons.person_outline),
-            label: "Teste",
-          ),
         ],
       ),
-      body: <Widget>[
+      body: [
         const MyFage(),
-        Container(),
-        Agendamento(),
+        const Agendamento(),
         const Profile(),
-        EmpresaScreen(),
       ][currentPageIndex],
     );
   }

@@ -19,7 +19,7 @@ class _ListaEmpresasState extends State<ListaEmpresas> {
 
   Future<void> _getEmpresas() async {
     final response = await http.get(
-      Uri.parse('http://10.0.1.78:8080/empresa'),
+      Uri.parse('https://3414-200-17-101-78.ngrok.io/empresa'),
     );
 
     if (response.statusCode == 200) {
@@ -87,7 +87,3 @@ class EmpresaPage extends StatelessWidget {
     );
   }
 }
-
-void main() => runApp(MaterialApp(
-      home: ListaEmpresas(),
-    ));

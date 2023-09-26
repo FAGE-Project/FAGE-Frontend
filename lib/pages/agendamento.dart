@@ -1,126 +1,73 @@
+import 'package:fage/util/util.dart';
 import 'package:flutter/material.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:intl/intl.dart';
 
-class Agendamento extends StatelessWidget {
+class Agendamento extends StatefulWidget {
+  const Agendamento({super.key});
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyDatePickerScreen(),
-    );
-  }
+  _AgendamentoScreenState createState() => _AgendamentoScreenState();
 }
 
-class MyDatePickerScreen extends StatefulWidget {
-  @override
-  _MyDatePickerScreenState createState() => _MyDatePickerScreenState();
-}
-
-class _MyDatePickerScreenState extends State<MyDatePickerScreen> {
+class _AgendamentoScreenState extends State<Agendamento> {
   DateTime _selectedDate = DateTime.now();
   int _selectedServiceIndexServico = 0;
-  final List<Map<String, dynamic>> _servicos = [
-    {'name': 'Serviço 1', 'image': AssetImage('assets/images/barbeiro.jpg')},
-    {'name': 'Serviço 2', 'image': AssetImage('assets/images/barbeiro.jpg')},
-    {'name': 'Serviço 3', 'image': AssetImage('assets/images/barbeiro.jpg')},
-    {'name': 'Serviço 4', 'image': AssetImage('assets/images/barbeiro.jpg')},
-    {'name': 'Serviço 5', 'image': AssetImage('assets/images/barbeiro.jpg')},
-    {'name': 'Serviço 6', 'image': AssetImage('assets/images/barbeiro.jpg')},
-    {'name': 'Serviço 7', 'image': AssetImage('assets/images/barbeiro.jpg')},
-  ];
-
   int _selectedServiceIndexFuncionario = 0;
-  final List<Map<String, dynamic>> _funcionarios = [
-    {'name': 'Funcionario 1', 'image': AssetImage('assets/images/fun1.png')},
-    {'name': 'Funcionario 2', 'image': AssetImage('assets/images/fun2.jpg')},
-    {'name': 'Funcionario 3', 'image': AssetImage('assets/images/fun1.png')},
-    {'name': 'Funcionario 4', 'image': AssetImage('assets/images/fun2.jpg')},
-    {'name': 'Funcionario 5', 'image': AssetImage('assets/images/fun1.png')},
-    {'name': 'Funcionario 6', 'image': AssetImage('assets/images/fun2.jpg')},
-    {'name': 'Funcionario 7', 'image': AssetImage('assets/images/fun1.png')},
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Agendamento'),
-      ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(height: 10),
-          Padding(
-            padding: EdgeInsets.only(left: 16.0),
-            child: Text(
-              'Serviços',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          SizedBox(height: 10),
-          Container(
-            height: 125,
+        children: [
+          const Center(child: Text('Serviços')),
+          const Spacer(),
+          Flexible(
+            flex: 8,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: _servicos.length,
+              itemCount: Util.servicos.length,
               itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
+                return MaterialButton(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  onPressed: () {
                     setState(() {
                       _selectedServiceIndexServico = index;
                     });
                   },
-                  child: Container(
-                    margin: EdgeInsets.all(10),
-                    child: Column(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: index == _selectedServiceIndexServico
-                                  ? Colors.grey
-                                  : Colors.transparent,
-                              width: 3,
-                            ),
-                          ),
-                          child: CircleAvatar(
-                            radius: 38,
-                            backgroundColor: Colors.transparent,
-                            backgroundImage: _servicos[index]['image'],
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: index == _selectedServiceIndexServico
+                                ? Colors.grey
+                                : Colors.transparent,
+                            width: 3,
                           ),
                         ),
-                        SizedBox(height: 5),
-                        Text(_servicos[index]['name']),
-                      ],
-                    ),
+                        child: CircleAvatar(
+                          radius: 38,
+                          backgroundColor: Colors.transparent,
+                          backgroundImage: Util.servicos[index]['image'],
+                        ),
+                      ),
+                      Text(Util.servicos[index]['name']),
+                    ],
                   ),
                 );
               },
             ),
           ),
-          SizedBox(height: 20),
-          Padding(
-            padding: EdgeInsets.only(left: 16.0),
-            child: Text(
-              'Funcionarios',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          SizedBox(height: 10),
-          Container(
-            height: 125,
+          const Spacer(),
+          const Center(child: Text('Funcionários')),
+          const Spacer(),
+          Flexible(
+            flex: 9,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: _funcionarios.length,
+              itemCount: Util.funcionarios.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
@@ -145,11 +92,11 @@ class _MyDatePickerScreenState extends State<MyDatePickerScreen> {
                           child: CircleAvatar(
                             radius: 38,
                             backgroundColor: Colors.transparent,
-                            backgroundImage: _funcionarios[index]['image'],
+                            backgroundImage: Util.funcionarios[index]['image'],
                           ),
                         ),
                         SizedBox(height: 5),
-                        Text(_funcionarios[index]['name']),
+                        Text(Util.funcionarios[index]['name']),
                       ],
                     ),
                   ),
@@ -157,25 +104,14 @@ class _MyDatePickerScreenState extends State<MyDatePickerScreen> {
               },
             ),
           ),
-          SizedBox(height: 20),
-          Padding(
-            padding: EdgeInsets.only(left: 16.0),
-            child: Text(
-              'Data',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          SizedBox(height: 10),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 20.0),
+          const Spacer(),
+          const Center(child: Text('Data do agendamento')),
+          const Spacer(),
+          Flexible(
+            flex: 9,
             child: DatePicker(
               DateTime.now(),
-              width: 60,
-              height: 80,
+              height: 90,
               controller: DatePickerController(),
               initialSelectedDate: DateTime.now(),
               selectionColor: Colors.grey,
@@ -189,7 +125,17 @@ class _MyDatePickerScreenState extends State<MyDatePickerScreen> {
                   _selectedDate = date;
                 });
               },
-              locale: 'pt', // Define a localização como português
+              locale: 'pt_BR',
+            ),
+          ),
+          const Spacer(flex: 7),
+          Flexible(
+            flex: 4,
+            child: Center(
+              child: FilledButton(
+                onPressed: () {},
+                child: const Text('Finalizar agendamento'),
+              ),
             ),
           ),
         ],

@@ -1,3 +1,4 @@
+import 'package:fage/controller/empresa_controller.dart';
 import 'package:flutter/material.dart';
 
 import '../components/custom_text_form_field.dart';
@@ -7,11 +8,12 @@ class MyFage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        CustomTextFormField(labelText: "Pesquisar", prefixIcon: Icons.search),
-        SizedBox(height: 10),
-        SingleChildScrollView(
+        const CustomTextFormField(
+            labelText: "Pesquisar", prefixIcon: Icons.search),
+        const SizedBox(height: 10),
+        const SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
@@ -21,7 +23,7 @@ class MyFage extends StatelessWidget {
                       backgroundColor: Colors.transparent,
                       minRadius: 45,
                       backgroundImage:
-                      AssetImage("assets/images/barbeiro.jpg")),
+                          AssetImage("assets/images/barbeiro.jpg")),
                   SizedBox(height: 10),
                   Text("Barbearias")
                 ],
@@ -32,7 +34,7 @@ class MyFage extends StatelessWidget {
                       backgroundColor: Colors.transparent,
                       minRadius: 45,
                       backgroundImage:
-                      AssetImage("assets/images/barbeiro.jpg")),
+                          AssetImage("assets/images/barbeiro.jpg")),
                   SizedBox(height: 10),
                   Text("Salões de\nbeleza", textAlign: TextAlign.center)
                 ],
@@ -43,7 +45,7 @@ class MyFage extends StatelessWidget {
                       backgroundColor: Colors.transparent,
                       minRadius: 45,
                       backgroundImage:
-                      AssetImage("assets/images/barbeiro.jpg")),
+                          AssetImage("assets/images/barbeiro.jpg")),
                   SizedBox(height: 10),
                   Text(
                     "Saúde &\nBem-estar",
@@ -57,7 +59,7 @@ class MyFage extends StatelessWidget {
                       backgroundColor: Colors.transparent,
                       minRadius: 45,
                       backgroundImage:
-                      AssetImage("assets/images/barbeiro.jpg")),
+                          AssetImage("assets/images/barbeiro.jpg")),
                   SizedBox(height: 10),
                   Text(
                     "Spa &\nmassagem",
@@ -68,6 +70,24 @@ class MyFage extends StatelessWidget {
             ],
           ),
         ),
+        Container(
+          height: 200,
+          child: FutureBuilder(
+            future: EmpresaController.buscarEmpresas(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData &&
+                  snapshot.connectionState == ConnectionState.done) {
+                return ListView.builder(
+                  itemBuilder: (context, index) =>
+                      Text(snapshot.data![index].nome!),
+                  itemCount: snapshot.data!.length,
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            },
+          ),
+        )
       ],
     );
   }
