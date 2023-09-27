@@ -1,3 +1,4 @@
+import 'package:fage/pages/empresa.dart';
 import 'package:fage/pages/home.dart';
 import 'package:fage/pages/register_corp.dart';
 import 'package:fage/pages/register_user.dart';
@@ -11,6 +12,7 @@ class Routes {
     "/register_corp": (_) => const CadastroCorp(),
     "/register_user": (_) => const Cadastro(),
     "/agendamento": (_) => Agendamento(),
+    "/empresa": (_) => Empresa(),
   };
 
   static const String home = "/home";
@@ -20,4 +22,6 @@ class Routes {
   static const String cadastroUser = "/register_user";
 
   static const String agendamento = "/agendamento";
+
+  static const String empresa = "/empresa";
 }

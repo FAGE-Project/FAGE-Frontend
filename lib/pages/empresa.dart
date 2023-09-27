@@ -1,56 +1,44 @@
+import 'package:fage/components/list_tile/empresa_list_tile.dart';
+import 'package:fage/components/list_tile/title_empresa_list_tile.dart';
+import 'package:fage/controller/empresa_controller.dart';
 import 'package:flutter/material.dart';
 
-class EmpresaScreen extends StatelessWidget {
+class Empresa extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final id = ModalRoute.of(context)!.settings.arguments as int;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detalhes da Empresa'),
+        title: const Text('Detalhes da Empresa'),
       ),
       body: FutureBuilder(
-        future: fetchDataFromApi(),
+        future: EmpresaController.buscarEmpresaId(id),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
-          } else if (snapshot.hasError) {
-            return Text('Erro: ${snapshot.error}');
-          } else {
-            final String nomeEmpresa = 'Nome da Empresa';
-            final String status = 'Status da Empresa';
-            final String imageUrl ='https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/08/Untitled-design(35).jpg';
-
+          if (snapshot.hasData &&
+              snapshot.connectionState == ConnectionState.done) {
             return Column(
               children: [
-                Expanded(
-                  child: Image.network(
-                    imageUrl,
-                    fit: BoxFit.cover,
-                  ),
+                Image.network(
+                  snapshot.data!.foto!,
+                  scale: 2,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        nomeEmpresa,
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        status,
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
+                Column(
+                  children: [
+                    TitleEmpresaListTile(
+                        nomeEmpresa: snapshot.data!.nome!,
+                        endereco:
+                            '${snapshot.data!.enderecoDTO.rua}, ${snapshot.data!.enderecoDTO.numero}, ${snapshot.data!.enderecoDTO.cep}, ${snapshot.data!.enderecoDTO.cidade!}'),
+                    SizedBox(height: 8),
+                    Text("Serviços populares"),
+                  ],
                 ),
               ],
             );
+          } else if (snapshot.hasError) {
+            return Text('Erro: ${snapshot.error}');
+          } else {
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
@@ -60,10 +48,4 @@ class EmpresaScreen extends StatelessWidget {
   Future<void> fetchDataFromApi() async {
     await Future.delayed(Duration(seconds: 2));
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: EmpresaScreen(),
-  ));
 }

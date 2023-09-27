@@ -19,7 +19,7 @@ class _ListaEmpresasState extends State<ListaEmpresas> {
 
   Future<void> _getEmpresas() async {
     final response = await http.get(
-      Uri.parse('https://3414-200-17-101-78.ngrok.io/empresa'),
+      Uri.parse('https://e3a3-200-17-101-78.ngrok.io/empresa'),
     );
 
     if (response.statusCode == 200) {

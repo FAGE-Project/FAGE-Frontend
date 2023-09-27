@@ -20,4 +20,6 @@ class Util {
     {'name': 'Funcionario 6', 'image': const AssetImage('assets/images/fun2.jpg')},
     {'name': 'Funcionario 7', 'image': const AssetImage('assets/images/fun1.png')},
   ];
+
+  static const baseUrl = 'https://e3a3-200-17-101-78.ngrok.io';
 }
