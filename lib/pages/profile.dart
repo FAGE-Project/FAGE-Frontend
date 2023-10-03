@@ -188,160 +188,162 @@ class _ProfileState extends State<Profile> {
               );
             } else {
               // For screens narrower than 600px, show the Profile form in a single column
-              return Column(
-                children: [
-                  SizedBox(height: 60),
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          controller: _cpf_cnpjControllerUser,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          keyboardType: TextInputType.number,
-                          validator: (value) {
-                            // if (CPFValidator.isValid(value)) {
-                            //   return null;
-                            // } else {
-                            //   return 'CPF inválido';
-                            // }
-                          },
-                          decoration: InputDecoration(
-                            labelText: 'CPF',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: 60),
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            controller: _cpf_cnpjControllerUser,
+                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                            keyboardType: TextInputType.number,
+                            validator: (value) {
+                              // if (CPFValidator.isValid(value)) {
+                              //   return null;
+                              // } else {
+                              //   return 'CPF inválido';
+                              // }
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'CPF',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(height: 20),
-                        TextFormField(
-                          controller: _passwordControllerUser,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: validarSenha,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            labelText: 'Senha',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
+                          SizedBox(height: 20),
+                          TextFormField(
+                            controller: _passwordControllerUser,
+                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                            validator: validarSenha,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              labelText: 'Senha',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      // TODO: Navigate to the forgot password screen
-                    },
-                    child: Text('Esqueci minha senha'),
-                  ),
-                  SizedBox(height: 20),
-                  SignInButton(
-                    Buttons.google,
-                    onPressed: () {
-                      // TODO: Profile with Google
-                    },
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                    TextButton(
+                      onPressed: () {
+                        // TODO: Navigate to the forgot password screen
+                      },
+                      child: Text('Esqueci minha senha'),
                     ),
-                    text: 'Entrar com Google',
-                  ),
-                  SizedBox(height: 10),
-                  SignInButton(
-                    Buttons.facebook,
-                    onPressed: () {
-                      // TODO: Profile with Facebook
-                    },
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    text: 'Entrar com Facebook',
-                  ),
-                  SizedBox(height: 20),
-                  TextButton.icon(
-                    onPressed: () {
-                      // TODO: Navigate to the email registration screen
-                    },
-                    style: TextButton.styleFrom(
+                    SizedBox(height: 20),
+                    SignInButton(
+                      Buttons.google,
+                      onPressed: () {
+                        // TODO: Profile with Google
+                      },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        side: BorderSide(
-                          color: Colors.blue,
-                          width: 2.0,
+                      ),
+                      text: 'Entrar com Google',
+                    ),
+                    SizedBox(height: 10),
+                    SignInButton(
+                      Buttons.facebook,
+                      onPressed: () {
+                        // TODO: Profile with Facebook
+                      },
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      text: 'Entrar com Facebook',
+                    ),
+                    SizedBox(height: 20),
+                    TextButton.icon(
+                      onPressed: () {
+                        // TODO: Navigate to the email registration screen
+                      },
+                      style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          side: BorderSide(
+                            color: Colors.blue,
+                            width: 2.0,
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          vertical: 12.0,
+                          horizontal: 20.0,
                         ),
                       ),
-                      padding: EdgeInsets.symmetric(
-                        vertical: 12.0,
-                        horizontal: 20.0,
-                      ),
-                    ),
-                    icon: Icon(
-                      Icons.email,
-                      color: Colors.blue,
-                    ),
-                    label: Text(
-                      'Cadastrar pelo Email',
-                      style: TextStyle(
-                        fontSize: 16.0,
+                      icon: Icon(
+                        Icons.email,
                         color: Colors.blue,
                       ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  TextButton.icon(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(Routes.cadastroCorp);
-                    },
-                    style: TextButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        side: BorderSide(
-                          width: 2.0,
+                      label: Text(
+                        'Cadastrar pelo Email',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.blue,
                         ),
                       ),
-                      padding: EdgeInsets.symmetric(
-                        vertical: 12.0,
-                        horizontal: 20.0,
-                      ),
                     ),
-                    icon: Icon(
-                      Icons.corporate_fare,
-                    ),
-                    label: Text(
-                      'Cadastrar empresa',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  TextButton.icon(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(Routes.cadastroUser);
-                    },
-                    style: TextButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        side: BorderSide(
-                          width: 2.0,
+                    SizedBox(height: 20),
+                    TextButton.icon(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(Routes.cadastroCorp);
+                      },
+                      style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          side: BorderSide(
+                            width: 2.0,
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          vertical: 12.0,
+                          horizontal: 20.0,
                         ),
                       ),
-                      padding: EdgeInsets.symmetric(
-                        vertical: 12.0,
-                        horizontal: 20.0,
+                      icon: Icon(
+                        Icons.corporate_fare,
+                      ),
+                      label: Text(
+                        'Cadastrar empresa',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                        ),
                       ),
                     ),
-                    icon: Icon(
-                      Icons.corporate_fare,
-                    ),
-                    label: Text(
-                      'Cadastrar usuário',
-                      style: TextStyle(
-                        fontSize: 16.0,
+                    SizedBox(height: 20),
+                    TextButton.icon(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(Routes.cadastroUser);
+                      },
+                      style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          side: BorderSide(
+                            width: 2.0,
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          vertical: 12.0,
+                          horizontal: 20.0,
+                        ),
+                      ),
+                      icon: Icon(
+                        Icons.corporate_fare,
+                      ),
+                      label: Text(
+                        'Cadastrar usuário',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
             }
           },
