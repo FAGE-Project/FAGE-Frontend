@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
@@ -9,6 +10,7 @@ class CustomTextFormField extends StatelessWidget {
   final void Function(String)? onChanged;
   final TextInputAction? textInputAction;
   final IconData? prefixIcon;
+  final List<TextInputFormatter>? inputFormatters;
 
   const CustomTextFormField(
       {super.key,
@@ -19,7 +21,8 @@ class CustomTextFormField extends StatelessWidget {
       this.onChanged,
       this.keyboardType,
       this.textInputAction,
-      this.prefixIcon});
+      this.prefixIcon,
+      this.inputFormatters});
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +31,11 @@ class CustomTextFormField extends StatelessWidget {
       focusNode: focusNode,
       controller: controller,
       onChanged: onChanged,
-      decoration: InputDecoration(
-          labelText: labelText, prefixIcon: Icon(prefixIcon)
-      ),
+      decoration:
+          InputDecoration(labelText: labelText, prefixIcon: Icon(prefixIcon)),
       validator: validator,
       keyboardType: keyboardType,
+      inputFormatters: inputFormatters,
     );
   }
 }

@@ -63,5 +63,7 @@ class Util {
     },
   ];
 
-  static const baseUrl = 'https://5f86-200-17-101-78.ngrok.io';
+  static const baseUrl = 'https://807a-200-17-101-78.ngrok.io';
+
+  static const emailRegex = "[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)";
 }
