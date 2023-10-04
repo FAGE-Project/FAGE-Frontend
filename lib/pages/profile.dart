@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:fage/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -28,13 +26,14 @@ class _ProfileState extends State<Profile> {
     };
 
     final response = await http.post(
-      Uri.parse('https://5f86-200-17-101-78.ngrok.io/login'),
+      Uri.parse('https://21f4-200-17-101-78.ngrok.io/login'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode(userData),
     );
 
     if (response.statusCode == 200) {
-      print("Profile bem-sucedido");
+      const snackbar = SnackBar(content: Text("Login realizado com sucesso!"));
+      ScaffoldMessenger.of(context).showSnackBar(snackbar);
     } else {
       print("Profile mal-sucedido");
     }
@@ -220,7 +219,8 @@ class _ProfileState extends State<Profile> {
                         children: [
                           TextFormField(
                             controller: _cpf_cnpjControllerUser,
-                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             keyboardType: TextInputType.number,
                             validator: (value) {
                               // if (CPFValidator.isValid(value)) {
@@ -239,8 +239,9 @@ class _ProfileState extends State<Profile> {
                           SizedBox(height: 20),
                           TextFormField(
                             controller: _passwordControllerUser,
-                            autovalidateMode: AutovalidateMode.onUserInteraction,
-                            validator: validarSenha,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            //validator: validarSenha,
                             obscureText: true,
                             decoration: InputDecoration(
                               labelText: 'Senha',
@@ -250,6 +251,29 @@ class _ProfileState extends State<Profile> {
                             ),
                           ),
                         ],
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          await _authenticateUser();
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          vertical: 12.0,
+                          horizontal: 20.0,
+                        ),
+                      ),
+                      child: Text(
+                        'Entrar',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                        ),
                       ),
                     ),
                     TextButton(

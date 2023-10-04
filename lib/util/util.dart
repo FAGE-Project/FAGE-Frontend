@@ -63,5 +63,5 @@ class Util {
     },
   ];
 
-  static const baseUrl = 'https://5f86-200-17-101-78.ngrok.io';
+  static const baseUrl = 'https://21f4-200-17-101-78.ngrok.io';
 }
