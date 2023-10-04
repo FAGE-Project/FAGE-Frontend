@@ -1,7 +1,6 @@
 import 'package:fage/components/list_tile/empresa_list_tile.dart';
 import 'package:fage/components/list_tile/title_empresa_list_tile.dart';
 import 'package:fage/controller/empresa_controller.dart';
-import 'package:fage/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 class Empresa extends StatelessWidget {
@@ -31,10 +30,7 @@ class Empresa extends StatelessWidget {
                         endereco:
                             '${snapshot.data!.enderecoDTO.rua}, ${snapshot.data!.enderecoDTO.numero}, ${snapshot.data!.enderecoDTO.cep}, ${snapshot.data!.enderecoDTO.cidade!}'),
                     SizedBox(height: 8),
-                    FilledButton(
-                        onPressed: () =>
-                            Navigator.pushNamed(context, Routes.agendamento),
-                        child: Text("Agendar"))
+                    Text("Serviços populares"),
                   ],
                 ),
               ],
@@ -47,5 +43,9 @@ class Empresa extends StatelessWidget {
         },
       ),
     );
+  }
+
+  Future<void> fetchDataFromApi() async {
+    await Future.delayed(Duration(seconds: 2));
   }
 }

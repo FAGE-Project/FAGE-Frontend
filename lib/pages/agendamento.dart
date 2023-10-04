@@ -18,12 +18,49 @@ class _AgendamentoScreenState extends State<Agendamento> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Image.asset("assets/images/fage-logo-white.png", scale: 2),
-        centerTitle: true,
-      ),
       body: Column(
         children: [
+          const Center(child: Text('Serviços')),
+          const Spacer(),
+          Flexible(
+            flex: 8,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: Util.servicos.length,
+              itemBuilder: (context, index) {
+                return MaterialButton(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  onPressed: () {
+                    setState(() {
+                      _selectedServiceIndexServico = index;
+                    });
+                  },
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: index == _selectedServiceIndexServico
+                                ? Colors.grey
+                                : Colors.transparent,
+                            width: 3,
+                          ),
+                        ),
+                        child: CircleAvatar(
+                          radius: 38,
+                          backgroundColor: Colors.transparent,
+                          backgroundImage: Util.servicos[index]['image'],
+                        ),
+                      ),
+                      Text(Util.servicos[index]['name']),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+          const Spacer(),
           const Center(child: Text('Funcionários')),
           const Spacer(),
           Flexible(
@@ -68,46 +105,6 @@ class _AgendamentoScreenState extends State<Agendamento> {
             ),
           ),
           const Spacer(),
-          const Center(child: Text('Serviços')),
-          Flexible(
-            flex: 8,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: Util.servicos.length,
-              itemBuilder: (context, index) {
-                return MaterialButton(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  onPressed: () {
-                    setState(() {
-                      _selectedServiceIndexServico = index;
-                    });
-                  },
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: index == _selectedServiceIndexServico
-                                ? Colors.grey
-                                : Colors.transparent,
-                            width: 3,
-                          ),
-                        ),
-                        child: CircleAvatar(
-                          radius: 38,
-                          backgroundColor: Colors.transparent,
-                          backgroundImage: Util.servicos[index]['image'],
-                        ),
-                      ),
-                      Text(Util.servicos[index]['name']),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
-          const Spacer(),
           const Center(child: Text('Data do agendamento')),
           const Spacer(),
           Flexible(
@@ -136,31 +133,7 @@ class _AgendamentoScreenState extends State<Agendamento> {
             flex: 4,
             child: Center(
               child: FilledButton(
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                            title:
-                                const Text("Deseja confirmar o agendamento?"),
-                            content: const Text(
-                              "Você deseja confirmar o horário com o prestador Alan às 18 horas e 20 minutos para realizar um corte de cabelo?",
-                            ),
-                            actions: <Widget>[
-                              TextButton(
-                                child: const Text('Cancelar'),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                              TextButton(
-                                child: const Text("Confirmar"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          ));
-                },
+                onPressed: () {},
                 child: const Text('Finalizar agendamento'),
               ),
             ),
