@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:fage/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -21,12 +23,12 @@ class _ProfileState extends State<Profile> {
 
   Future<void> _authenticateUser() async {
     Map<String, dynamic> userData = {
-      'email': _cpf_cnpjControllerUser.text,
-      'senha': _passwordControllerUser.text
+      'documento': _cpf_cnpjControllerUser.text,
+      'password': _passwordControllerUser.text
     };
 
     final response = await http.post(
-      Uri.parse('https://3f28-170-0-145-85.sa.ngrok.io/pessoa/auth'),
+      Uri.parse('https://5f86-200-17-101-78.ngrok.io/login'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode(userData),
     );
@@ -40,18 +42,18 @@ class _ProfileState extends State<Profile> {
 
   Future<void> _authenticateCorp() async {
     Map<String, dynamic> userData = {
-      'email': _cpf_cnpjControllerCorp.text,
-      'senha': _passwordControllerCorp.text
+      'documento': _cpf_cnpjControllerCorp.text,
+      'password': _passwordControllerCorp.text
     };
 
     final response = await http.post(
-      Uri.parse('https://3f28-170-0-145-85.sa.ngrok.io/pessoa/auth'),
+      Uri.parse('https://5f86-200-17-101-78.ngrok.io/login'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode(userData),
     );
 
     if (response.statusCode == 200) {
-      print("Profile bem-sucedido");
+      print("Profile bem-sucedido2");
     } else {
       print("Profile mal-sucedido");
     }
@@ -76,8 +78,7 @@ class _ProfileState extends State<Profile> {
                         TextFormField(
                           controller: _cpf_cnpjControllerUser,
                           keyboardType: TextInputType.number,
-                          autovalidateMode:
-                          AutovalidateMode.onUserInteraction,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
                             // if (CPFValidator.isValid(value)) {
                             //   return null;
@@ -94,14 +95,35 @@ class _ProfileState extends State<Profile> {
                         ),
                         TextFormField(
                           controller: _passwordControllerUser,
-                          autovalidateMode:
-                          AutovalidateMode.onUserInteraction,
-                          validator: validarSenha,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          //validator: validarSenha,
                           obscureText: true,
                           decoration: InputDecoration(
                             labelText: 'Senha',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20.0),
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              await _authenticateUser();
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                              vertical: 12.0,
+                              horizontal: 20.0,
+                            ),
+                          ),
+                          child: Text(
+                            'Entrar',
+                            style: TextStyle(
+                              fontSize: 16.0,
                             ),
                           ),
                         ),
@@ -217,7 +239,7 @@ class _ProfileState extends State<Profile> {
                         TextFormField(
                           controller: _passwordControllerUser,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: validarSenha,
+                          //validator: validarSenha,
                           obscureText: true,
                           decoration: InputDecoration(
                             labelText: 'Senha',
@@ -227,6 +249,29 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        await _authenticateUser();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        vertical: 12.0,
+                        horizontal: 20.0,
+                      ),
+                    ),
+                    child: Text(
+                      'Entrar',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                      ),
                     ),
                   ),
                   TextButton(
@@ -374,7 +419,7 @@ class _ProfileState extends State<Profile> {
                                 controller: _cpf_cnpjControllerCorp,
                                 keyboardType: TextInputType.number,
                                 autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
+                                    AutovalidateMode.onUserInteraction,
                                 validator: (value) {
                                   // if (CPFValidator.isValid(value)) {
                                   //   return null;
@@ -395,8 +440,8 @@ class _ProfileState extends State<Profile> {
                               TextFormField(
                                 controller: _passwordControllerCorp,
                                 autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                                validator: validarSenha,
+                                    AutovalidateMode.onUserInteraction,
+                                //validator: validarSenha,
                                 obscureText: true,
                                 decoration: InputDecoration(
                                   labelText: 'Senha',
@@ -548,7 +593,7 @@ class _ProfileState extends State<Profile> {
                         TextFormField(
                           controller: _passwordControllerCorp,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: validarSenha,
+                          //validator: validarSenha,
                           obscureText: true,
                           decoration: InputDecoration(
                             labelText: 'Senha',
