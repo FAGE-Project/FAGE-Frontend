@@ -1,8 +1,11 @@
 import 'package:fage/routes/routes.dart';
+import 'package:fage/util/util.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:sign_in_button/sign_in_button.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:fage/components/custom_text_form_field.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -18,6 +21,10 @@ class _ProfileState extends State<Profile> {
   final TextEditingController _passwordControllerUser = TextEditingController();
   final TextEditingController _cpf_cnpjControllerCorp = TextEditingController();
   final TextEditingController _passwordControllerCorp = TextEditingController();
+  var maskFormatter = MaskTextInputFormatter(
+      mask: '###.###.###-##',
+      filter: {"#": RegExp(r'[0-9]')},
+      type: MaskAutoCompletionType.lazy);
 
   Future<void> _authenticateUser() async {
     Map<String, dynamic> userData = {
@@ -26,7 +33,7 @@ class _ProfileState extends State<Profile> {
     };
 
     final response = await http.post(
-      Uri.parse('https://21f4-200-17-101-78.ngrok.io/login'),
+      Uri.parse('${Util.baseUrl}/login'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode(userData),
     );
@@ -46,7 +53,7 @@ class _ProfileState extends State<Profile> {
     };
 
     final response = await http.post(
-      Uri.parse('https://5f86-200-17-101-78.ngrok.io/login'),
+      Uri.parse('${Util.baseUrl}/login'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode(userData),
     );
@@ -74,24 +81,14 @@ class _ProfileState extends State<Profile> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        TextFormField(
-                          controller: _cpf_cnpjControllerUser,
-                          keyboardType: TextInputType.number,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (value) {
-                            // if (CPFValidator.isValid(value)) {
-                            //   return null;
-                            // } else {
-                            //   return 'CPF inválido';
-                            // }
-                          },
-                          decoration: InputDecoration(
-                            labelText: 'CPF',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                          ),
-                        ),
+                        CustomTextFormField(
+                            inputFormatters: [maskFormatter],
+                            controller: _cpf_cnpjControllerUser,
+                            labelText: "Cpf",
+                            keyboardType: TextInputType.number,
+                            validator: (value) => value == null || value.isEmpty
+                                ? "Campo obrigatório"
+                                : null),
                         TextFormField(
                           controller: _passwordControllerUser,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -217,25 +214,15 @@ class _ProfileState extends State<Profile> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          TextFormField(
-                            controller: _cpf_cnpjControllerUser,
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            keyboardType: TextInputType.number,
-                            validator: (value) {
-                              // if (CPFValidator.isValid(value)) {
-                              //   return null;
-                              // } else {
-                              //   return 'CPF inválido';
-                              // }
-                            },
-                            decoration: InputDecoration(
-                              labelText: 'CPF',
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                            ),
-                          ),
+                          CustomTextFormField(
+                              inputFormatters: [maskFormatter],
+                              controller: _cpf_cnpjControllerUser,
+                              labelText: "Cpf",
+                              keyboardType: TextInputType.number,
+                              validator: (value) =>
+                                  value == null || value.isEmpty
+                                      ? "Campo obrigatório"
+                                      : null),
                           SizedBox(height: 20),
                           TextFormField(
                             controller: _passwordControllerUser,

@@ -43,11 +43,6 @@ class _HomeState extends State<Home> {
           //   label: "Pesquisar",
           // ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.calendar_today),
-            icon: Icon(Icons.calendar_today_outlined),
-            label: "Agendamentos",
-          ),
-          NavigationDestination(
             selectedIcon: Icon(Icons.person),
             icon: Icon(Icons.person_outline),
             label: "Perfil",
@@ -56,7 +51,6 @@ class _HomeState extends State<Home> {
       ),
       body: [
         const MyFage(),
-        const Agendamento(),
         const Profile(),
       ][currentPageIndex],
     );

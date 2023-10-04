@@ -65,7 +65,7 @@ class _CadastroState extends State<Cadastro> {
                     child: CustomTextFormField(
                         controller: nameController,
                         labelText: "Nome completo",
-                        prefixIcon: Icons.edit,
+                        prefixIcon: Icon(Icons.edit),
                         validator: (value) => value == null || value.isEmpty
                             ? "Campo obrigatório"
                             : null)),
@@ -77,7 +77,7 @@ class _CadastroState extends State<Cadastro> {
                         controller: documentController,
                         labelText: "Documento",
                         keyboardType: TextInputType.number,
-                        prefixIcon: Icons.description,
+                        prefixIcon: Icon(Icons.description),
                         validator: (value) => value == null || value.isEmpty
                             ? "Campo obrigatório"
                             : null)),
@@ -87,7 +87,7 @@ class _CadastroState extends State<Cadastro> {
                     child: CustomTextFormField(
                         controller: emailController,
                         labelText: "E-mail",
-                        prefixIcon: Icons.email,
+                        prefixIcon: Icon(Icons.email),
                         validator: (value) {
                           var regExp = RegExp(Util.emailRegex);
                           if (value == null || value.isEmpty) {
@@ -104,7 +104,7 @@ class _CadastroState extends State<Cadastro> {
                     child: CustomTextFormField(
                       controller: passwordController,
                       labelText: "Senha",
-                      prefixIcon: Icons.visibility,
+                      prefixIcon: Icon(Icons.visibility),
                       validator: (value) => value == null || value.isEmpty
                           ? "Campo obrigatório"
                           : value.length < 6

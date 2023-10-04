@@ -12,7 +12,7 @@ class MyFage extends StatelessWidget {
     return Column(
       children: [
         const CustomTextFormField(
-            labelText: "Pesquisar", prefixIcon: Icons.search),
+            labelText: "Pesquisar", prefixIcon: Icon(Icons.search)),
         const SizedBox(height: 10),
         const SingleChildScrollView(
           scrollDirection: Axis.horizontal,

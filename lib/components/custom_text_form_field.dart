@@ -9,7 +9,7 @@ class CustomTextFormField extends StatelessWidget {
   final FocusNode? focusNode;
   final void Function(String)? onChanged;
   final TextInputAction? textInputAction;
-  final IconData? prefixIcon;
+  final Widget? prefixIcon;
   final List<TextInputFormatter>? inputFormatters;
 
   const CustomTextFormField(
@@ -31,8 +31,7 @@ class CustomTextFormField extends StatelessWidget {
       focusNode: focusNode,
       controller: controller,
       onChanged: onChanged,
-      decoration:
-          InputDecoration(labelText: labelText, prefixIcon: Icon(prefixIcon)),
+      decoration: InputDecoration(labelText: labelText, prefixIcon: prefixIcon),
       validator: validator,
       keyboardType: keyboardType,
       inputFormatters: inputFormatters,
