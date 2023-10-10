@@ -30,7 +30,12 @@ class Empresa extends StatelessWidget {
                         endereco:
                             '${snapshot.data!.enderecoDTO.rua}, ${snapshot.data!.enderecoDTO.numero}, ${snapshot.data!.enderecoDTO.cep}, ${snapshot.data!.enderecoDTO.cidade!}'),
                     SizedBox(height: 8),
-                    Text("Serviços populares"),
+                    ElevatedButton(
+                      onPressed: () => Navigator.pushNamed(context, Routes.agendamento),
+                      child: Text(
+                        'Agendar serviços',
+                      ),
+                    ),
                   ],
                 ),
               ],
