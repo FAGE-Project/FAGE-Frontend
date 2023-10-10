@@ -137,58 +137,6 @@ class _ProfileState extends State<Profile> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SignInButton(
-                          Buttons.google,
-                          onPressed: () {
-                            // TODO: Profile with Google
-                          },
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          text: 'Entrar com Google',
-                        ),
-                        SizedBox(height: 10),
-                        SignInButton(
-                          Buttons.facebook,
-                          onPressed: () {
-                            // TODO: Profile with Facebook
-                          },
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          text: 'Entrar com Facebook',
-                        ),
-                        SizedBox(height: 20),
-                        TextButton.icon(
-                          onPressed: () {
-                            // TODO: Navigate to the email registration screen
-                          },
-                          style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              side: BorderSide(
-                                color: Colors.blue,
-                                width: 2.0,
-                              ),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                              vertical: 12.0,
-                              horizontal: 20.0,
-                            ),
-                          ),
-                          icon: Icon(
-                            Icons.email,
-                            color: Colors.blue,
-                          ),
-                          label: Text(
-                            'Cadastrar pelo Email',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              color: Colors.blue,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 20),
                         TextButton(
                           onPressed: () {
                             _pageController.animateToPage(
@@ -290,36 +238,6 @@ class _ProfileState extends State<Profile> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       text: 'Entrar com Facebook',
-                    ),
-                    SizedBox(height: 20),
-                    TextButton.icon(
-                      onPressed: () {
-                        // TODO: Navigate to the email registration screen
-                      },
-                      style: TextButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                          side: BorderSide(
-                            color: Colors.blue,
-                            width: 2.0,
-                          ),
-                        ),
-                        padding: EdgeInsets.symmetric(
-                          vertical: 12.0,
-                          horizontal: 20.0,
-                        ),
-                      ),
-                      icon: Icon(
-                        Icons.email,
-                        color: Colors.blue,
-                      ),
-                      label: Text(
-                        'Cadastrar pelo Email',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: Colors.blue,
-                        ),
-                      ),
                     ),
                     SizedBox(height: 20),
                     TextButton.icon(

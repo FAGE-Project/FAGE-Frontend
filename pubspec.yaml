@@ -41,6 +41,7 @@ dependencies:
   brasil_fields:
   date_picker_timeline:
   intl: ^0.17.0
+  dio: ^5.3.3
 
 dev_dependencies:
   flutter_test:

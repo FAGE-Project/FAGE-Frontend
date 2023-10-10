@@ -12,7 +12,6 @@ class Routes {
     "/home": (_) => const Home(),
     "/register_corp": (_) => const CadastroCorp(),
     "/register_user": (_) => const Cadastro(),
-    "/agendamento": (_) => Agendamento(),
     "/empresa": (_) => Empresa(),
     "/my_fage": (_) => MyFage(),
   };

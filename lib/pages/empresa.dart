@@ -1,6 +1,7 @@
 import 'package:fage/components/list_tile/empresa_list_tile.dart';
 import 'package:fage/components/list_tile/title_empresa_list_tile.dart';
 import 'package:fage/controller/empresa_controller.dart';
+import 'package:fage/pages/agendamento.dart';
 import 'package:fage/routes/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class Empresa extends StatelessWidget {
               children: [
                 Image.network(
                   snapshot.data!.foto!,
-                  scale: 2,
+                  scale: 15
                 ),
                 Column(
                   children: [
@@ -32,9 +33,9 @@ class Empresa extends StatelessWidget {
                             '${snapshot.data!.enderecoDTO.rua}, ${snapshot.data!.enderecoDTO.numero}, ${snapshot.data!.enderecoDTO.cep}, ${snapshot.data!.enderecoDTO.cidade!}'),
                     SizedBox(height: 8),
                     ElevatedButton(
-                      onPressed: () => Navigator.pushNamed(context, Routes.agendamento),
+                      onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Agendamento(empresaDTO: snapshot.data!,))),
                       child: Text(
-                        'Agendar serviços',
+                        'Agendar serviço',
                       ),
                     ),
                   ],

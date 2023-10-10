@@ -34,7 +34,7 @@ class EmpresaDTO {
           estado: "Paraná",
           complemento: "Residência",
           numero: 6547,
-          rua: "Rua da puta que te pariu",
+          rua: "Avenida Heitor de Alencar Furtado",
           cep: "84895-654"),
     );
   }
@@ -62,4 +62,12 @@ class EmpresaDTO {
     });
     return empresaDTOList;
   }
+
+  Map<dynamic, dynamic> toJson() =>
+      {
+        'id': id,
+        'nome': nome,
+        'foto': foto,
+        'descricao': descricao,
+      };
 }
